@@ -658,6 +658,25 @@ section {
 /*--------------------------------------------------------------
 # Why Us
 --------------------------------------------------------------*/
+/*내가만든거*/
+.why-us .container .disappear {
+  display: none;
+  visibility: hidden;
+}
+
+/*내가만든거*/
+.why-us .container .buttonGroup {
+  /*position: absolute;*/
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+/*내가만든거*/
+.why-us .container button {
+  margin: 0 10px;
+}
+
 .why-us .content {
   padding: 30px;
   background: #1977cc;
@@ -702,10 +721,34 @@ section {
   width: 100%;
 }
 
+/*내가만든거*/
+.why-us .icon-boxes .icon-box:hover {
+  text-align: center;
+  border-radius: 10px;
+  background: lightgray;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  width: 100%;
+  cursor: pointer;
+}
+
 .why-us .icon-boxes .icon-box i {
   font-size: 40px;
   color: #1977cc;
   margin-bottom: 30px;
+}
+
+/*내가만든거*/
+.why-us .icon-boxes .icon-box img {
+  width: 200px;
+  height: 150px;
+  border-radius: 20%;
+  margin-bottom: 30px;
+}
+
+/*내가만든거*/
+.why-us .icon-boxes .icon-box a:hover {
+  background-color: blue;
 }
 
 .why-us .icon-boxes .icon-box h4 {
