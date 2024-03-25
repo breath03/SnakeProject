@@ -14,7 +14,7 @@ ex) 홍길동 2024-03-19 로그인페이지ui추가
 - `git clone (github에서 프로젝트의 주소)` : 해당 github의 주소에 해당하는 프로젝트를 다운로드해오는 명령어
 
 
-#오라클 연동 방법
+# 오라클 연동 방법
 <!--	오라클 연동 시작	-->
 			<dependency>
 				<groupId>com.oracle.database.jdbc</groupId>
