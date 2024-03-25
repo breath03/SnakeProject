@@ -50,4 +50,6 @@ ex) 홍길동 2024-03-19 로그인페이지ui추가
 			</dependency>
 		<!--  오라클 연동 끝	-->
 추가를 한다.
-src/test/java/com/snakeproject 밑에 TestJava.java 파일에 최종적으로 연동하는 클래스
+src/test/java/com/snakeproject/com.project.SnakeProject 밑에 TestJava.java 파일에 최종적으로 연동하는 클래스
+
+- 연동하려는 아이다와 비밀번호는 본인 환경에 맞춰서 수정 후 테스트
