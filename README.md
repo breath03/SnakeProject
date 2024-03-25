@@ -12,3 +12,43 @@ ex) 홍길동 2024-03-19 로그인페이지ui추가
 - `git remote add origin ‘해당 github프로젝트 url’` : origin이라는 이름으로 해당 github프로젝트를 원격(remote)으로 조정하겠다는 명령어 → origin은 다른 이름으로 변경가능
 - `git push origin master` : 해당 github에 master라는 branch에 올리는 명령어
 - `git clone (github에서 프로젝트의 주소)` : 해당 github의 주소에 해당하는 프로젝트를 다운로드해오는 명령어
+
+
+#오라클 연동 방법
+<!--	오라클 연동 시작	-->
+			<dependency>
+				<groupId>com.oracle.database.jdbc</groupId>
+				<artifactId>ojdbc11</artifactId>
+				<version>23.2.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>1.18.30</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jline</groupId>
+				<artifactId>jline</artifactId>
+				<version>3.1.3</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+			</dependency>
+		<!--  오라클 연동 끝	-->
+추가를 한다.
+
+연결하는 파일은 따로 업로드.
