@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MedicalController {
-    @GetMapping("/medical")
+    @GetMapping("/information")
     public String Medical(){
-        return "content/medical";
+        return "content/information";
     }
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <th:block th:fragment="headerFragment">
+        <script defer src="/assets/js/header.js"></script>
         <div id="topbar" class="d-flex align-items-center fixed-top">
             <div class="container d-flex justify-content-between">
                 <div class="contact-info d-flex align-items-center">
@@ -23,9 +24,9 @@
                 <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
                 <nav id="navbar" class="navbar order-last order-lg-0">
                     <ul>
-                        <li><a class="nav-link scrollto active" id="home" href="/">홈</a></li>
-                        <li><a class="nav-link scrollto" id="order" href="order">게시판</a></li>
-<!--                        <li><a class="nav-link scrollto" id="medical" href="medical">진료과 / 의료진</a></li>-->
+                        <li><a class="nav-link scrollto" id="home" href="/">홈</a></li>
+                        <li><a class="nav-link scrollto" id="information" href="information">정보</a></li>
+                        <li><a class="nav-link scrollto" id="messageBoard" href="messageBoard">게시판</a></li>
 <!--                        <li><a class="nav-link scrollto" id="info" href="info">이용안내</a></li>-->
 <!--                        <li><a class="nav-link scrollto" id="intro" href="/">병원소개</a></li>-->
 <!--                        <li class="dropdown"><a href="#"><span>진료과</span> <i class="bi bi-chevron-down"></i></a>-->

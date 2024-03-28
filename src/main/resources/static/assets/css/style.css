@@ -224,7 +224,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding: 0;
@@ -344,7 +344,7 @@ h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #2c4964;
@@ -592,6 +592,80 @@ section {
 .section-title p {
   margin-bottom: 0;
 }
+
+/*내가만든 section*/
+/*--------------------------------------------------------------
+# messageBoard
+--------------------------------------------------------------*/
+section.messageBoard {
+  position: relative;
+  padding: 150px 0 60px;
+}
+section.messageBoard .container {
+  position: relative;
+}
+section.messageBoard .container .category {
+  max-width: 1320px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+section.messageBoard .container .category .categoryName {
+  display: flex;
+  width: 300px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+section.messageBoard .container .category .categoryName:hover {
+  background-color: lightgray;
+}
+section.messageBoard .container .category .categoryName.active {
+  background-color: lightgray;
+}
+
+section.messageBoard .container .contents-group {
+  display: block;
+  margin-bottom: 50px;
+}
+section.messageBoard .container .contents-group .content {
+  height: 150px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section.messageBoard .container .contents-group .content h5 {
+  margin-bottom: 20px;
+}
+section.messageBoard .container .contents-group .content:hover {
+  background-color: lightgray;
+}
+section.messageBoard .container .btn-section{
+  text-align: center;
+}
+section.messageBoard .container .btn-section .btn-before {
+  position: absolute;
+  display: flex;
+  justify-content: start;
+  margin-left: 30px;
+}
+section.messageBoard .container .btn-section .btn-next {
+  position: absolute;
+  display: flex;
+  justify-content: end;
+  margin-right: 30px;
+}
+
+/*내가만든 section*/
+/*--------------------------------------------------------------
+# information
+--------------------------------------------------------------*/
+section.information {
+  position: relative;
+  padding: 150px 0 60px;
+}
+
 
 /*--------------------------------------------------------------
 # Breadcrumbs
