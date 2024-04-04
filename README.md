@@ -14,41 +14,5 @@ ex) 홍길동 2024-03-19 로그인페이지ui추가
 - `git clone (github에서 프로젝트의 주소)` : 해당 github의 주소에 해당하는 프로젝트를 다운로드해오는 명령어
 
 
-# 오라클 연동 방법
-<!--	오라클 연동 시작	-->
-			<dependency>
-				<groupId>com.oracle.database.jdbc</groupId>
-				<artifactId>ojdbc11</artifactId>
-				<version>23.2.0.0</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-dbcp</groupId>
-				<artifactId>commons-dbcp</artifactId>
-				<version>1.3</version>
-			</dependency>
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>1.18.30</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.12</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jline</groupId>
-				<artifactId>jline</artifactId>
-				<version>3.1.3</version>
-			</dependency>
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>1.2.17</version>
-			</dependency>
-		<!--  오라클 연동 끝	-->
-추가를 한다. <br>
-- src/test/java/com/project/SnakeProject 밑에 TestJava.java 파일에 최종적으로 연동하는 클래스
-- 연동하려는 아이다와 비밀번호는 본인 환경에 맞춰서 수정 후 테스트
+# 김태랑 수정
+- home.html, Home.js, style.css, seat.css 0404 수정
