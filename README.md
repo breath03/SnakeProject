@@ -14,5 +14,5 @@ ex) 홍길동 2024-03-19 로그인페이지ui추가
 - `git clone (github에서 프로젝트의 주소)` : 해당 github의 주소에 해당하는 프로젝트를 다운로드해오는 명령어
 
 
-# 김태랑 수정
-- home.html, Home.js, style.css, seat.css 0404 수정
+# 0404
+- 김태랑 home.html, Home.js, style.css, seat.css 수정
