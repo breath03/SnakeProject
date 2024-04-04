@@ -15,4 +15,4 @@ ex) 홍길동 2024-03-19 로그인페이지ui추가
 
 
 # 0404
-- 김태랑 home.html, Home.js, style.css, seat.css 수정
+- 김태랑 layout.html, home.html, Home.js, style.css, seat.css 수정
