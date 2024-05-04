@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원가입</title>
+    <link th:href="@{/assets/css/join2.css}" rel="stylesheet">
+</head>
+<body>
+<br>
+<br>
+<br>
+<div class="member">
+    <form action="">
+        <!-- 필드 -->
+        <div class="field">
+            <b>아이디</b>
+            <span class="placehold-text">
+            <input type="text" placeholder="아이디" id="userId" class="userId">
+            </span>
+            <div id="idMsg" class="error-message" style="display: none"></div>
+        </div>
+
+        <div class="field">
+            <b>비밀번호</b>
+            <input class="userpw" type="password" placeholder="비밀번호">
+        </div>
+
+        <div class="field">
+            <b>비밀번호 재확인</b>
+            <input class="userpw-confirm" type="password" placeholder="비밀번호 재확인">
+            <div class="error-message"></div>
+        </div>
+
+        <div class="field">
+            <b>이름</b>
+            <div class="name-container">
+                <input type="text" placeholder="이름" class="name-input">
+                <div class="gender1">
+                    <select>
+                        <option value="남자">남자</option>
+                        <option value="여자">여자</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <b>전화번호</b>
+            <input type="tel" id="phone" maxlength="11" placeholder="전화번호">
+        </div>
+
+        <!-- (생년월일) -->
+        <div class="field birth">
+            <b>생년월일</b>
+            <div>
+                <input type="number" placeholder="년(4자)" maxlength="4">
+                <select>
+                    <option value="">월</option>
+                    <option th:each="i : ${#numbers.sequence(1,12)}" th:value="${i}">
+                        <span th:value="${i}" th:text="${i}+월"></span>
+                    </option>
+                </select>
+                <select>
+                    <option value="">일</option>
+                    <option th:each="i : ${#numbers.sequence(1,31)}" th:value="${i}">
+                        <span th:text="${i}+일"></span>
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 가입하기 버튼 -->
+<!--        <input type="button" id="join" class="join" value="가입하기">-->
+        <a href="/">가입하기</a>
+<!--        <input type="submit" id="join" class="join" value="가입하기">-->
+    </form>
+</div>
+
+
+</body>
+</html>
+<script>
+    function checkId() {
+        // 아이디 입력 필드를 가져옵니다.
+        let id = $("#userId").val();
+        // 오류 메시지를 표시할 요소를 가져옵니다.
+        let oMsg = $("#idMsg");
+
+        // 아이디 입력 필드가 비어 있는지 확인합니다.
+        if (id.trim() === "") {
+            // 오류 메시지를 표시하고, 입력 필드 요소에 'error' 클래스를 추가합니다.
+            showErrorMsg(oMsg, "아이디: 필수 정보입니다.");
+            $("#userId").addClass("error");
+            return false; // 오류를 표시했으므로 폼 제출을 막습니다.
+        }
+        // 모든 검사에 통과했을 경우 true를 반환합니다.
+        return true;
+    }
+
+
+    // 비밀번호 확인 함수
+    function checkPassword() {
+        var password = document.querySelector('.userpw').value;
+        var confirmPassword = document.querySelector('.userpw-confirm').value;
+        var errorMessage = document.querySelector('.error-message');
+
+        if (password !== confirmPassword) {
+
+            errorMessage.textContent = "비밀번호가 일치하지 않습니다.";
+            document.querySelector('.userpw').focus();
+        } else {
+            // 비밀번호가 일치하면 오류 메시지를 지움
+            errorMessage.textContent = "";
+        }
+    }
+
+    // 비밀번호 확인 함수를 비밀번호 재확인 입력란의 이벤트에 연결
+    document.querySelector('.userpw-confirm').addEventListener('blur', checkPassword);
+</script>

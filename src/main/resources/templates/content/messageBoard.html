@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}"
+>
+<head>
+    <title>Order Page</title>
+    <script defer src="/assets/js/messageBoard.js"></script>
+</head>
+<th:block layout:fragment="content">
+    <section class="messageBoard">
+        <main id="main">
+            <div class="container">
+                <h4>게시판</h4>
+                <div class="category">
+                    <div class="categoryName active">공부</div>
+                    <div class="categoryName">자기계발</div>
+                    <div class="categoryName">취업</div>
+                    <div class="categoryName">수학</div>
+                    <div class="categoryName">영어</div>
+                </div>
+                <div class="contents-group">
+                    <div class="content">
+                        <h4 class="content-title">공부합시다.</h4>
+                        <h5 class="content-body">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요...</h5>
+                        <div class="content-date"><i class="bi bi-calendar-event"></i> 1111년-11월-11일 11:11</div>
+                        <div class="content-people"><i class="bi bi-people-fill"></i> 1 / 4 명</div>
+                    </div>
+                    <div class="content">222</div>
+                    <div class="content">333</div>
+                    <div class="content">444</div>
+                    <div class="content">555</div>
+                    <div class="content">666</div>
+                    <div class="content">777</div>
+                    <div class="content">888</div>
+                    <div class="content">999</div>
+                </div>
+                <div class="btn-section">
+                    <button type="button" class="btn btn-light btn-before">이전</button>
+                    <div class="btn-group me-2" id="btn-group" role="group" aria-label="Second group">
+                        <button type="button" class="btn btn-light active">1</button>
+                        <button type="button" class="btn btn-light">2</button>
+                        <button type="button" class="btn btn-light">3</button>
+                    </div>
+                    <button type="button" class="btn btn-light btn-next">다음</button>
+                </div>
+            </div>
+        </main>
+    </section>
+
+
+</th:block>
+</html>
