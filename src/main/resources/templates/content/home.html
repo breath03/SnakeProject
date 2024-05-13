@@ -60,15 +60,15 @@
                             </li>
                         </ul>
                         <div class="seatContainer" th:if="${ViewStudyInInfo != null}">
-<!--                            <div class="row" th:each="group : ${#lists.partition(ViewStudyInInfo, 6)}">-->
-<!--                                <th:block th:each="studyInInfo : ${group}">-->
-<!--                                    <span class="seat" th:id="'seat' + ${studyInInfo.SIINum}" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
-<!--                                </th:block>-->
-
-                            <div class="row">
-                                <th:block th:each="studyInInfo : ${ViewStudyInInfo}">
+                            <div class="row" th:each="group : ${#lists.partition(ViewStudyInInfo, 6)}">
+                                <th:block th:each="studyInInfo : ${group}">
                                     <span class="seat" th:id="'seat' + ${studyInInfo.SIINum}" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>
                                 </th:block>
+
+<!--                            <div class="row">-->
+<!--                                <th:block th:each="studyInInfo : ${ViewStudyInInfo}">-->
+<!--                                    <span class="seat" th:id="'seat' + ${studyInInfo.SIINum}" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                </th:block>-->
 
 <!--                                <span class="seat selectedSeat" id="seat1" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
 <!--&lt;!&ndash;                                <span class="seat selectedSeat" th:id="'seat' + ${studyInInfo.SIINum}" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>&ndash;&gt;-->
