@@ -6,10 +6,10 @@ buttonEls.forEach(function(buttonEl) {
     if (activeEl) {
       activeEl.classList.remove('active')
       buttonEl.classList.add('active')
-      check()
+      console.log(buttonEl.innerText)
     }else {
       buttonEl.classList.add('active')
-      check()
+      console.log(buttonEl.innerText)
     }
   })
 })
@@ -30,10 +30,10 @@ categoryNameEls.forEach(function(categoryNameEl) {
     if(activeEl) {
       activeEl.classList.remove('active')
       categoryNameEl.classList.add('active')
-      check()
+      console.log(categoryNameEl.innerText)
     }else {
       categoryNameEl.classList.add('active')
-      check()
+      console.log(categoryNameEl.innerText)
     }
   })
 })

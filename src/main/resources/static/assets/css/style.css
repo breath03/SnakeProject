@@ -644,18 +644,18 @@ section.messageBoard .container .contents-group .content:hover {
 section.messageBoard .container .btn-section{
   text-align: center;
 }
-section.messageBoard .container .btn-section .btn-before {
-  position: absolute;
-  display: flex;
-  justify-content: start;
-  margin-left: 30px;
-}
-section.messageBoard .container .btn-section .btn-next {
-  position: absolute;
-  display: flex;
-  justify-content: end;
-  margin-right: 30px;
-}
+/*section.messageBoard .container .btn-section .btn-before {*/
+/*  position: absolute;*/
+/*  display: flex;*/
+/*  justify-content: start;*/
+/*  margin-left: 30px;*/
+/*}*/
+/*section.messageBoard .container .btn-section .btn-next {*/
+/*  position: absolute;*/
+/*  display: flex;*/
+/*  justify-content: end;*/
+/*  margin-right: 30px;*/
+/*}*/
 
 /*내가만든 section*/
 /*--------------------------------------------------------------

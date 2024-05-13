@@ -6,6 +6,7 @@
 >
 <head>
     <script defer src="/assets/js/Home.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>Main</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -39,9 +40,12 @@
                     </div>
                   </div>
                   -->
+
+
+
                 <div class="buttonGroup">
-                    <button type="button" class="btn btn-lg btn-outline-secondary seatButton ">개인</button>
-                    <button type="button" class="btn btn-lg btn-outline-secondary roomButton active">스터디룸</button>
+                    <button type="button" class="btn btn-lg btn-outline-secondary seatButton active">개인</button>
+                    <button type="button" class="btn btn-lg btn-outline-secondary roomButton ">스터디룸</button>
                 </div>
                 <div class="col-lg-12 seats">
                     <div class="seatContainer">
@@ -55,67 +59,78 @@
                                 <small class="small">사용중인 자리</small>
                             </li>
                         </ul>
-                        <div class="seatContainer">
+                        <div class="seatContainer" th:if="${ViewStudyInInfo != null}">
+<!--                            <div class="row" th:each="group : ${#lists.partition(ViewStudyInInfo, 6)}">-->
+<!--                                <th:block th:each="studyInInfo : ${group}">-->
+<!--                                    <span class="seat" th:id="'seat' + ${studyInInfo.SIINum}" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                </th:block>-->
+
                             <div class="row">
-                                <span class="seat selectedSeat" id="seat1"></span>
-                                <span class="seat" id="seat2"></span>
-                                <span class="seat" id="seat3"></span>
-                                <span class="seat selectedSeat" id="seat4"></span>
-                                <span class="seat" id="seat5"></span>
-                                <span class="seat" id="seat6"></span>
+                                <th:block th:each="studyInInfo : ${ViewStudyInInfo}">
+                                    <span class="seat" th:id="'seat' + ${studyInInfo.SIINum}" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>
+                                </th:block>
+
+<!--                                <span class="seat selectedSeat" id="seat1" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--&lt;!&ndash;                                <span class="seat selectedSeat" th:id="'seat' + ${studyInInfo.SIINum}" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>&ndash;&gt;-->
+<!--                                <span class="seat" id="seat2" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat3" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat selectedSeat" id="seat4" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat5" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat6" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+
                                 <!--                            <span class="seat" id="seat7">테스트</span>-->
                                 <!--                            <span class="seat" id="seat8"></span>-->
                             </div>
-                            <div class="row">
-                                <span class="seat" id="seat9"></span>
-                                <span class="seat" id="seat10"></span>
-                                <span class="seat" id="seat11"></span>
-                                <span class="seat selectedSeat" id="seat12"></span>
-                                <span class="seat" id="seat13"></span>
-                                <span class="seat" id="seat14"></span>
-                                <!--                            <span class="seat" id="seat15"></span>-->
-                                <!--                            <span class="seat" id="seat16"></span>-->
-                            </div>
-                            <div class="row">
-                                <span class="seat" id="seat17"></span>
-                                <span class="seat" id="seat18"></span>
-                                <span class="seat" id="seat19"></span>
-                                <span class="seat" id="seat20"></span>
-                                <span class="seat" id="seat21"></span>
-                                <span class="seat" id="seat22"></span>
-                                <!--                            <span class="seat" id="seat23"></span>-->
-                                <!--                            <span class="seat" id="seat24"></span>-->
-                            </div>
-                            <div class="row">
-                                <span class="seat" id="seat25"></span>
-                                <span class="seat" id="seat26"></span>
-                                <span class="seat" id="seat27"></span>
-                                <span class="seat" id="seat28"></span>
-                                <span class="seat" id="seat29"></span>
-                                <span class="seat" id="seat30"></span>
-                                <!--                            <span class="seat" id="seat31"></span>-->
-                                <!--                            <span class="seat" id="seat32"></span>-->
-                            </div>
-                            <div class="row">
-                                <span class="seat" id="seat33"></span>
-                                <span class="seat" id="seat34"></span>
-                                <span class="seat" id="seat35"></span>
-                                <span class="seat" id="seat36"></span>
-                                <span class="seat" id="seat37"></span>
-                                <span class="seat" id="seat38"></span>
-                                <!--                            <span class="seat" id="seat39"></span>-->
-                                <!--                            <span class="seat" id="seat40"></span>-->
-                            </div>
-                            <div class="row">
-                                <span class="seat" id="seat41"></span>
-                                <span class="seat" id="seat42"></span>
-                                <span class="seat" id="seat43"></span>
-                                <span class="seat" id="seat44"></span>
-                                <span class="seat" id="seat45"></span>
-                                <span class="seat" id="seat46"></span>
-                                <!--                            <span class="seat" id="seat47"></span>-->
-                                <!--                            <span class="seat" id="seat48"></span>-->
-                            </div>
+<!--                            <div class="row">-->
+<!--                                <span class="seat" id="seat9" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat10" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat11" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat selectedSeat" id="seat12" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat13" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat14" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat15"></span>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat16"></span>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <span class="seat" id="seat17" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat18" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat19" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat20" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat21" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat22" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat23"></span>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat24"></span>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <span class="seat" id="seat25" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat26" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat27" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat28" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat29" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat30" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat31"></span>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat32"></span>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <span class="seat" id="seat33" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat34" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat35" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat36" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat37" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat38" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat39"></span>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat40"></span>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <span class="seat" id="seat41" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat42" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat43" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat44" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat45" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                <span class="seat" id="seat46" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat47"></span>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                            <span class="seat" id="seat48"></span>&ndash;&gt;-->
+<!--                            </div>-->
                         </div>
                         <p class="text">
                             <i class="bi bi-caret-right-fill"></i> 총 좌석 <span id="totalcount"></span>
@@ -179,5 +194,41 @@
             </div>
         </section><!-- End Why Us Section -->
     </main><!-- End #main -->
+    <!--modal1-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">알림</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="modal-body" class="modal-body" >
+                    내용부분
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" id="modalsucbtn" class="btn btn-primary"
+                            data-bs-target="#exampleModal2" data-bs-toggle="modal" data-bs-dismiss="modal">완료</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--modal2-->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel2">알림</h1>
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                </div>
+                <div id="modal-body2" class="modal-body" >
+                    내용부분
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal2Button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </th:block>
 </html>
