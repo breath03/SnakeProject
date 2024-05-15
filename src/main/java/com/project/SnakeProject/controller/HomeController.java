@@ -19,12 +19,28 @@ public class HomeController {
     @Autowired
     private StudyInInfoImpl studyInInfoImpl;
 
-    @RequestMapping(value = "/")
-    public String home(Model model){
-        List<StudyInInfoVo> tables = new ArrayList<>();
-        tables.addAll(studyInInfoImpl.ViewStudyInInfo());
+//    @RequestMapping(value = "/")
+//    public String home(Model model){
+//        List<StudyInInfoVo> tables = new ArrayList<>();
+//        tables.addAll(studyInInfoImpl.ViewStudyInInfo());
+//
+//        model.addAttribute("ViewStudyInInfo", tables);
+//        return "content/home";
+//    }
 
-        model.addAttribute("ViewStudyInInfo", tables);
+    @RequestMapping(value = "/")
+    public String home(Model model) {
+        List<StudyInInfoVo> tables = studyInInfoImpl.ViewStudyInInfo();
+
+
+        List<List<StudyInInfoVo>> groupedTables = new ArrayList<>();
+        for (int i = 0; i < tables.size(); i += 6) {
+            int end = Math.min(i + 6, tables.size());
+            groupedTables.add(tables.subList(i, end));
+        }
+
+        model.addAttribute("ViewStudyInInfo", groupedTables);
         return "content/home";
     }
+
 }
