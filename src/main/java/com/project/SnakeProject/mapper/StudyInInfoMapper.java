@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface StudyInInfoMapper {
   List<StudyInInfoVo> ViewStudyInInfo();
+
+  public int UpdateStudyInInfo(int num);
 }

@@ -608,7 +608,6 @@ section.messageBoard .container .category {
   max-width: 1320px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
 }
 section.messageBoard .container .category .categoryName {
   display: flex;
@@ -626,6 +625,7 @@ section.messageBoard .container .category .categoryName.active {
 
 section.messageBoard .container .contents-group {
   display: block;
+  margin-top: 50px;
   margin-bottom: 50px;
 }
 section.messageBoard .container .contents-group .content {

@@ -4,4 +4,9 @@
     <select id="ViewStudyInInfo" resultType="com.project.SnakeProject.vo.StudyInInfoVo">
         SELECT * FROM Tbl_StudyInInfo
     </select>
+
+    <update id="UpdateStudyInInfo" parameterType="java.lang.Integer">
+        UPDATE Tbl_StudyInInfo SET SeatUseState = 'Y' WHERE SCIdx = 1111 AND SeatNum =
+        (select SeatNum from Tbl_StudyInInfo where SIINum = #{SIINum})
+    </update>
 </mapper>

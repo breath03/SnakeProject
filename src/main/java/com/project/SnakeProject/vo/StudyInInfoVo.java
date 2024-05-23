@@ -1,23 +1,15 @@
 package com.project.SnakeProject.vo;
 
 public class StudyInInfoVo {
-  int SeatNum, SCIdx, SIINum;
+  int  SCIdx, SIINum;
   String SeatUseState;
 
-  public StudyInInfoVo(int SeatNum, int SCIdx, int SIINum, String SeatUseState) {
-    this.SeatNum = SeatNum;
+  public StudyInInfoVo(int SCIdx, int SIINum, String SeatUseState) {
     this.SCIdx = SCIdx;
     this.SIINum = SIINum;
     this.SeatUseState = SeatUseState;
   }
 
-  public int getSeatNum() {
-    return SeatNum;
-  }
-
-  public void setSeatNum(int seatNum) {
-    SeatNum = seatNum;
-  }
 
   public int getSCIdx() {
     return SCIdx;

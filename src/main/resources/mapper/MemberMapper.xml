@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.project.SnakeProject.mapper.MemberMapper">
+    <insert id="addMember" parameterType="map">
+<!--        <selectKey keyProperty="memSeq" resultType="java.lang.Integer" order="BEFORE">-->
+<!--            select MEM_SEQ.nextval from dual-->
+<!--        </selectKey>-->
+        INSERT INTO Tbl_Member
+        (
+            MIdx, MemberId, MemberPw,
+            MemberName, MemberSex, MemberPhone
+        )
+        VALUES
+        (
+            MEM_SEQ.nextval,
+            #{MemberId},
+            #{MemberPw},
+            #{MemberName},
+            #{MemberSex},
+            #{MemberPhone}
+        )
+    </insert>
+    <select id="selectId" resultType="boolean">
+        SELECT COUNT(*) FROM tbl_member where MemberId = #{MemberId}
+    </select>
+    <select id="login" resultType="String">
+        select MemberName from tbl_member where MemberId = #{MemberId} and MemberPw = #{MemberPw}
+    </select>
+</mapper>

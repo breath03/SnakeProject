@@ -1,4 +1,4 @@
-const buttonEls = document.querySelectorAll('#btn-group .btn');
+  const buttonEls = document.querySelectorAll('#btn-group .btn');
 
 buttonEls.forEach(function(buttonEl) {
   buttonEl.addEventListener('click', function() {
@@ -44,6 +44,17 @@ const contentsEls = document.querySelectorAll('section.messageBoard .container .
 
 contentsEls.forEach(function (contentsEl) {
   contentsEl.addEventListener('click', function () {
-    check()
+    // check()
+    window.location.href = "/post";
   })
 })
+
+
+function beforeActive() {
+  const activeButton = document.querySelector('#btn-group .btn.active')
+  console.log(activeButton.innerText - 1)
+}
+function nextActive() {
+  const activeButton = document.querySelector('#btn-group .btn.active')
+  console.log(Number(activeButton.innerText) + 1)
+}

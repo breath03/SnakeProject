@@ -6,20 +6,21 @@
 //     });
 // }
 
-const roomPictures = [];
-
-for (i = 0; i <= 4; i++) {
-    const el = document.querySelector('section.why-us .roomPicture' + i);
-    if(el) {
-        roomPictures.push(el);
-    }
-}
-
-roomPictures.forEach(function(roomPicture) {
-    roomPicture.addEventListener('click', function() {
-        console.log(this.className);
-    })
-})
+// 이동할때 쓸려고 만든거 (class값으로 찾음)
+// const roomPictures = [];
+//
+// for (i = 0; i <= 4; i++) {
+//     const el = document.querySelector('section.why-us .roomPicture' + i);
+//     if(el) {
+//         roomPictures.push(el);
+//     }
+// }
+//
+// roomPictures.forEach(function(roomPicture) {
+//     roomPicture.addEventListener('click', function() {
+//         console.log(this.className);
+//     })
+// })
 
 const seatButtonEl = document.querySelector('section.why-us .container .buttonGroup .seatButton');
 const roomButtonEl = document.querySelector('section.why-us .container .buttonGroup .roomButton');
@@ -37,6 +38,8 @@ roomButtonEl.addEventListener('click', function() {
 
     // seatEl.classList.add('disappear')
     // roomsEl.classList.remove('disappear')
+
+
 })
 
 seatButtonEl.addEventListener('click', function() {
@@ -95,12 +98,17 @@ seatEls.forEach(function(seatEl) {
 
 modalSuccessButton.addEventListener('click', function() {
     const selectSeatEl = document.getElementById(`${selectId}`)
-    console.log(selectSeatEl.classList.contains('selectedSeat'))
+    // console.log(selectSeatEl.classList.contains('selectedSeat'))
 
     if(selectSeatEl.classList.contains('selectedSeat')) {
         ModalContent2.innerHTML = "해당 자리는 이미 선택된 자리입니다. 다른자리를 선택해 주세요."
     }else if(!selectSeatEl.classList.contains('selectedSeat') && selectSeatEl.classList.contains('seat')) {
         ModalContent2.innerHTML = "자리배치가 완료되었습니다."
+
+        modal2Button.addEventListener('click', function () {
+            submitForm(selectId.substring(4));
+        })
+
     }else {
         ModalContent2.innerHTML = "오류가 발생했습니다. 다시 시도해주세요."
     }
@@ -109,3 +117,25 @@ modalSuccessButton.addEventListener('click', function() {
 modal2Button.addEventListener('click', function () {
     window.location.reload()
 })
+
+function submitForm(selectId) {
+    console.log(typeof parseInt(selectId));
+
+    let selectIdInt = 0;
+    selectIdInt = parseInt(selectId);
+    $.ajax({
+        url: '/updateSeat',
+        data: {
+            selectId :  selectIdInt
+        },
+        type: 'POST',
+        success: function(result) {
+            console.log(result);
+            if(result == 1) {
+                window.location.reload()
+            }
+        }, error : function (xhr, status, err) {
+            console.log(xhr + ', ' + status + ', ' + err)
+        }
+    })
+}

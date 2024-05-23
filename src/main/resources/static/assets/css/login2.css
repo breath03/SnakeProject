@@ -58,30 +58,30 @@
     position: absolute;
     text-align: center;
     transform: translateX(-50%);
-    background-color: rgb( 33, 41, 66 );
+    background-color: white;
     border-radius: 9px;
-    border-top: 10px solid #79a6fe;
-    border-bottom: 10px solid #8BD17C;
     width: 400px;
     height: 500px;
 }
 
 .box h4 {
     font-family: 'Source Sans Pro', sans-serif;
-    color: #5c6bc0;
-    font-size: 18px;
+    color: #000000;
+    font-size: 21px;
     margin-top:50px;
+
 }
 
 .box h4 span {
-    color: #dfdeee;
-    font-weight: lighter;
+    color: #ffffff;
+    font-weight: bold;
+
 }
 
 .box h5 {
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 13px;
-    color: #a1a4ad;
+    font-size: 14px;
+    color: #000000;
     letter-spacing: 1.5px;
     margin-top: -15px;
     margin-bottom: 70px;
@@ -90,13 +90,15 @@
 .box input[type = "text"],.box input[type = "password"] {
     display: block;
     margin: 20px auto;
-    background: #262e49;
+    /*background: #262e49;*/
+    /*background : gray;*/
+    background : lightgray;
     border: 0;
     border-radius: 5px;
     padding: 14px 10px;
     width: 320px;
     outline: none;
-    color: #d6d6d6;
+    color: #000000;
     -webkit-transition: all .2s ease-out;
     -moz-transition: all .2s ease-out;
     -ms-transition: all .2s ease-out;
@@ -141,8 +143,8 @@ label span {
 
 .btn1 {
     border:0;
-    background: #7f5feb;
-    color: #dfdeee;
+    background: lightsalmon;
+    color: #000000;
     border-radius: 100px;
     width: 340px;
     height: 49px;
@@ -202,21 +204,6 @@ label span {
     color: #7f60eb;
 }
 
-.error {
-    background: #ff3333;
-    text-align: center;
-    width: 337px;
-    height: 20px;
-    padding: 2px;
-    border: 0;
-    border-radius: 5px;
-    margin: 10px auto 10px;
-    position: absolute;
-    top: 31%;
-    left: 7.2%;
-    color: white;
-    display: none;
-}
 
 .login-footer {
     position: absolute;

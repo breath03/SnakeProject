@@ -72,12 +72,11 @@
 <!--                            넘어오는 데이터 확인 한것(2차원 배열로 넘어옴)-->
 <!--                            <div th:text="${ViewStudyInInfo}"></div>-->
                             <div class="row" th:each="studyInInfogroup : ${ViewStudyInInfo}">
-                                <span th:each="studyInInfo : ${studyInInfogroup}"
-                                      th:class="${studyInInfo.SeatUseState} == 'Y' ? 'seat selectedSeat' : 'seat' "
-                                      th:id="'seat' + ${studyInInfo.SIINum}"
-                                      data-bs-toggle="modal" data-bs-target="#exampleModal"></span>
-
-
+                                <th:block th:each="studyInInfo : ${studyInInfogroup}">
+                                    <span th:class="${studyInInfo.SeatUseState} == 'Y' ? 'seat selectedSeat' : 'seat' "
+                                          th:id="'seat' + ${studyInInfo.SIINum}"
+                                          data-bs-toggle="modal" data-bs-target="#exampleModal"></span>
+                                </th:block>
 
 <!--                                <span class="seat selectedSeat" id="seat1" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>-->
 <!--&lt;!&ndash;                                <span class="seat selectedSeat" th:id="'seat' + ${studyInInfo.SIINum}" data-bs-toggle="modal" data-bs-target="#exampleModal"></span>&ndash;&gt;-->
@@ -151,51 +150,66 @@
                 <div class="col-lg-12 align-items-stretch rooms">
                     <div class="icon-boxes d-flex flex-column justify-content-center">
                         <div class="row">
-                            <div class="col-xl-3 d-flex align-items-stretch">
+
+                            <div class="col-xl-3 d-flex align-items-stretch" th:each="StudyGInfo : ${ViewStudyGInfo}">
                                 <a href="/teamdetail">
-                                    <div class="icon-box mt-4 mt-xl-0 roomPicture1">
+                                    <div th:id="'roomPicture' + ${StudyGInfo.SGINum}" class="icon-box mt-4 mt-xl-0">
                                         <!--                      <i class="bx bx-receipt"></i>-->
-                                        <img src="/assets/img/studyRoom/study%20room1.png" alt="스터드룸1 사진">
-                                        <h4>스터디룸 1번</h4>
-                                        <p>스터디룸은 학습이나 작업을 위한 전용 공간으로, 개별이나 그룹으로 사용될 수 있는 공간입니다.
+                                        <th:block th:each="StudyGImg : ${ViewStudyGImg}">
+                                            <img th:if="${StudyGImg.SGIIdx == StudyGInfo.SGIIdx}" th:src="${StudyGImg.SGImg}" src="" alt="스터드룸 사진">
+                                        </th:block>
+                                        <h4 th:text="${StudyGInfo.SGIContent1}">스터디룸 1번</h4>
+                                        <p th:text="${StudyGInfo.SGIContent2}">스터디룸은 학습이나 작업을 위한 전용 공간으로, 개별이나 그룹으로 사용될 수 있는 공간입니다.
                                             주로 조용하고 집중하기 좋은 환경을 제공하여 학업이나 업무에 집중할 수 있도록 돕습니다.</p>
                                         <!--                      <a href="#" type="button" class="btn btn-light">버튼</a>-->
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-xl-3 d-flex align-items-stretch">
-                                <a href="/teamdetail">
-                                    <div class="icon-box mt-4 mt-xl-0 roomPicture2">
-                                        <!--                      <i class="bx bx-cube-alt"></i>-->
-                                        <img src="/assets/img/studyRoom/study%20room2.png" alt="스터드룸2 사진">
-                                        <h4>스터디룸 2번</h4>
-                                        <p>스터디룸은 학습이나 작업을 위한 전용 공간으로, 개별이나 그룹으로 사용될 수 있는 공간입니다.
-                                            주로 조용하고 집중하기 좋은 환경을 제공하여 학업이나 업무에 집중할 수 있도록 돕습니다.</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 d-flex align-items-stretch">
-                                <a href="/teamdetail">
-                                    <div class="icon-box mt-4 mt-xl-0 roomPicture3">
-                                        <!--                      <i class="bx bx-images"></i>-->
-                                        <img src="/assets/img/studyRoom/study%20room3.png" alt="스터드룸3 사진">
-                                        <h4>스터디룸 3번</h4>
-                                        <p>스터디룸은 학습이나 작업을 위한 전용 공간으로, 개별이나 그룹으로 사용될 수 있는 공간입니다.
-                                            주로 조용하고 집중하기 좋은 환경을 제공하여 학업이나 업무에 집중할 수 있도록 돕습니다.</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-3 d-flex align-items-stretch">
-                                <a href="/teamdetail">
-                                    <div class="icon-box mt-4 mt-xl-0 roomPicture4">
-                                        <!--                      <i class="bx bx-images"></i>-->
-                                        <img src="/assets/img/studyRoom/study%20room4.png" alt="스터드룸4 사진">
-                                        <h4>스터디룸 4번</h4>
-                                        <p>스터디룸은 학습이나 작업을 위한 전용 공간으로, 개별이나 그룹으로 사용될 수 있는 공간입니다.
-                                            주로 조용하고 집중하기 좋은 환경을 제공하여 학업이나 업무에 집중할 수 있도록 돕습니다.</p>
-                                    </div>
-                                </a>
-                            </div>
+<!--                            <div class="col-xl-3 d-flex align-items-stretch">-->
+<!--                                <a href="/teamdetail">-->
+<!--                                    <div id="roomPicture1" class="icon-box mt-4 mt-xl-0">-->
+<!--                                        &lt;!&ndash;                      <i class="bx bx-receipt"></i>&ndash;&gt;-->
+<!--                                        <img src="/assets/img/studyRoom/study%20room1-1.png" alt="스터드룸1 사진">-->
+<!--                                        <h4>스터디룸 1번</h4>-->
+<!--                                        <p>스터디룸은 학습이나 작업을 위한 전용 공간으로, 개별이나 그룹으로 사용될 수 있는 공간입니다.-->
+<!--                                            주로 조용하고 집중하기 좋은 환경을 제공하여 학업이나 업무에 집중할 수 있도록 돕습니다.</p>-->
+<!--                                        &lt;!&ndash;                      <a href="#" type="button" class="btn btn-light">버튼</a>&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div class="col-xl-3 d-flex align-items-stretch">-->
+<!--                                <a href="/teamdetail">-->
+<!--                                    <div id="roomPicture2" class="icon-box mt-4 mt-xl-0">-->
+<!--                                        &lt;!&ndash;                      <i class="bx bx-cube-alt"></i>&ndash;&gt;-->
+<!--                                        <img src="/assets/img/studyRoom/study%20room2-1.png" alt="스터드룸2 사진">-->
+<!--                                        <h4>스터디룸 2번</h4>-->
+<!--                                        <p>스터디룸은 학습이나 작업을 위한 전용 공간으로, 개별이나 그룹으로 사용될 수 있는 공간입니다.-->
+<!--                                            주로 조용하고 집중하기 좋은 환경을 제공하여 학업이나 업무에 집중할 수 있도록 돕습니다.</p>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div class="col-xl-3 d-flex align-items-stretch">-->
+<!--                                <a href="/teamdetail">-->
+<!--                                    <div id="roomPicture3" class="icon-box mt-4 mt-xl-0">-->
+<!--                                        &lt;!&ndash;                      <i class="bx bx-images"></i>&ndash;&gt;-->
+<!--                                        <img src="/assets/img/studyRoom/study%20room3-1.png" alt="스터드룸3 사진">-->
+<!--                                        <h4>스터디룸 3번</h4>-->
+<!--                                        <p>스터디룸은 학습이나 작업을 위한 전용 공간으로, 개별이나 그룹으로 사용될 수 있는 공간입니다.-->
+<!--                                            주로 조용하고 집중하기 좋은 환경을 제공하여 학업이나 업무에 집중할 수 있도록 돕습니다.</p>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div class="col-xl-3 d-flex align-items-stretch">-->
+<!--                                <a href="/teamdetail">-->
+<!--                                    <div id="roomPicture4" class="icon-box mt-4 mt-xl-0">-->
+<!--                                        &lt;!&ndash;                      <i class="bx bx-images"></i>&ndash;&gt;-->
+<!--                                        <img src="/assets/img/studyRoom/study%20room4-1.png" alt="스터드룸4 사진">-->
+<!--                                        <h4>스터디룸 4번</h4>-->
+<!--                                        <p>스터디룸은 학습이나 작업을 위한 전용 공간으로, 개별이나 그룹으로 사용될 수 있는 공간입니다.-->
+<!--                                            주로 조용하고 집중하기 좋은 환경을 제공하여 학업이나 업무에 집중할 수 있도록 돕습니다.</p>-->
+<!--                                    </div>-->
+<!--                                </a>-->
+<!--                            </div>-->
                         </div>
                     </div><!-- End .content-->
                 </div>

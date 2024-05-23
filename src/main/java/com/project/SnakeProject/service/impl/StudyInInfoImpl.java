@@ -18,4 +18,9 @@ public class StudyInInfoImpl implements StudyInInfo {
   public List<StudyInInfoVo> ViewStudyInInfo() {
     return mapper.ViewStudyInInfo();
   }
+
+  @Override
+  public int UpdateStudyInInfo(int num) {
+    return mapper.UpdateStudyInInfo(num);
+  }
 }

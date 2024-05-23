@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface StudyInInfo {
   public List<StudyInInfoVo> ViewStudyInInfo();
+
+  public int UpdateStudyInInfo(int num);
 }

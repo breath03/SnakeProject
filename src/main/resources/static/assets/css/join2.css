@@ -60,11 +60,34 @@ a{
     display: flex;
     gap:10px; /*간격 벌려줄때 공식처럼 사용핟나 */
 }
+
 .error-message{
     color: red;
 }
+
+.error-message1{
+    color: red;
+}
+
 .name-container {
     display: flex;
+}
+
+.userId {
+    flex: 7;
+    margin-right: 5px;
+}
+
+.idcheck {
+    flex: 3;
+}
+
+.idcheckbtn {
+    border: 1px solid #dadada;
+    background-color: #ffffff;
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 .name-input {
@@ -88,7 +111,7 @@ a{
     flex:1;
 }
 
-.field.gender div{
+.field .gender1 div{
     border: 1px solid #dadada;
     padding: 15px 5px;
     background-color: #fff;
