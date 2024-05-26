@@ -13,8 +13,13 @@
         <main id="main">
             <div class="container">
                 <h4>게시판</h4>
-                <div class="category">
-                    <th:block th:each="CommunityCategory : ${ViewCommunityCategory}">
+<!--                <p th:text="${ViewpageTables}"></p>-->
+              <th:block th:each="pageTables, index : ${ViewpageTables}">
+                <p th:text="${index}"></p>
+              </th:block>
+<!--                <p th:text="${ViewCommunityCategory}"></p>-->
+                <div class="category" th:each="groupCategory : ${ViewCommunityCategory}">
+                    <th:block th:each="CommunityCategory : ${groupCategory}">
                         <div class="categoryName" th:text="${CommunityCategory.ComCateName}"></div>
                     </th:block>
 <!--                    <div class="categoryName active">공부</div>-->
@@ -32,41 +37,65 @@
 <!--                    <div class="categoryName">5</div>-->
 <!--                    <div class="categoryName">6</div>-->
 <!--                </div>-->
-                <div class="contents-group">
-                    <th:block th:each="community : ${ViewCommunity}">
-                        <div class="content">
-                            <h4 class="content-title" th:text="${community.ComTitle}"></h4>
-                            <h5 class="content-body" th:text="${community.ComContent}"></h5>
-                            <div class="content-date"><i class="bi bi-calendar-event"></i><span th:text="' ' + ${community.ComRegDate}"></span></div>
-                            <div class="content-people"><i class="bi bi-people-fill"></i><span th:text="' ' + ${community.ComToCount}"></span></div>
-                        </div>
+                <div class="contents-group" th:each="groupCommunity, index : ${ViewCommunity}">
+                    <p th:text="${index}"></p>
+<!--                    <p th:text="${index.index}"></p>-->
+<!--                    <p th:text="${parameterCommunity}"></p>-->
+
+                    <th:block th:if="${index.count} == ${parameterCommunity}" >
+                        <th:block th:each="community : ${groupCommunity}">
+                            <div class="content">
+                                <h4 class="content-title" th:text="${community.ComTitle}"></h4>
+                                <h5 class="content-body" th:text="${community.ComContent}"></h5>
+                                <div class="content-date"><i class="bi bi-calendar-event"></i><span th:text="' ' + ${community.ComStartDate}"></span></div>
+                                <div class="content-people"><i class="bi bi-people-fill"></i><span th:text="' ' + ${community.memberCount + 1} + ' / ' + ${community.ComToCount} + ' 명'"></span></div>
+                            </div>
+                        </th:block>
                     </th:block>
 
-                    <div class="content">
-                        <h4 class="content-title">공부합시다.</h4>
-                        <h5 class="content-body">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요...</h5>
-                        <div class="content-date"><i class="bi bi-calendar-event"></i> 1111년-11월-11일 11:11</div>
-                        <div class="content-people"><i class="bi bi-people-fill"></i> 1 / 4 명</div>
-                    </div>
-                    <div class="content">222</div>
-                    <div class="content">333</div>
-                    <div class="content">444</div>
-                    <div class="content">555</div>
-                    <div class="content">666</div>
-                    <div class="content">777</div>
-                    <div class="content">888</div>
-                    <div class="content">999</div>
+<!--                    <th:block th:each="community : ${groupCommunity}">-->
+<!--                        <div class="content">-->
+<!--                            <h4 class="content-title" th:text="${community.ComTitle}"></h4>-->
+<!--                            <h5 class="content-body" th:text="${community.ComContent}"></h5>-->
+<!--                            <div class="content-date"><i class="bi bi-calendar-event"></i><span th:text="' ' + ${community.ComStartDate}"></span></div>-->
+<!--                            <div class="content-people"><i class="bi bi-people-fill"></i><span th:text="' ' + ${community.memberCount + 1} + ' / ' + ${community.ComToCount} + ' 명'"></span></div>-->
+<!--                        </div>-->
+<!--                    </th:block>-->
+
+
+<!--                    <div class="content">-->
+<!--                        <h4 class="content-title">공부합시다.</h4>-->
+<!--                        <h5 class="content-body">안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요...</h5>-->
+<!--                        <div class="content-date"><i class="bi bi-calendar-event"></i> 1111년-11월-11일 11:11</div>-->
+<!--                        <div class="content-people"><i class="bi bi-people-fill"></i> 1 / 4 명</div>-->
+<!--                    </div>-->
+<!--                    <div class="content">222</div>-->
+<!--                    <div class="content">333</div>-->
+<!--                    <div class="content">444</div>-->
+<!--                    <div class="content">555</div>-->
+<!--                    <div class="content">666</div>-->
+<!--                    <div class="content">777</div>-->
+<!--                    <div class="content">888</div>-->
+<!--                    <div class="content">999</div>-->
                 </div>
                 <div class="btn-section">
-                    <button type="button" class="btn btn-light btn-before" onclick=""><i class="bi bi-chevron-double-left"></i></button>
+                    <button type="button" class="btn btn-light btn-before" onclick="firstActive()"><i class="bi bi-chevron-double-left"></i></button>
                     <button type="button" class="btn btn-light btn-before" onclick="beforeActive()"><i class="bi bi-chevron-left"></i></button>
                     <div class="btn-group" id="btn-group" role="group" aria-label="Second group">
-                        <button type="button" id="button1" class="btn btn-light active">1</button>
-                        <button type="button" id="button2" class="btn btn-light">2</button>
-                        <button type="button" id="button3" class="btn btn-light">3</button>
+                        <th:block th:each="two : ${ViewpageTables}">
+                            <th:block th:with="size=${two.size()}"></th:block>
+                        </th:block>
+                        <th:block th:each="i : ${#numbers.sequence((parameterPageGroup - 1) * 10 + 1, parameterPageGroup * 10)}">
+                            <button type="button" th:classappend="${i == parameterCommunity} ? 'active'" th:text="${i}" class="btn btn-light">1</button>
+                        </th:block>
+
+
+<!--                        <button type="button" id="button1" class="btn btn-light active">1</button>-->
+<!--                        <button type="button" id="button2" class="btn btn-light">2</button>-->
+<!--                        <button type="button" id="button3" class="btn btn-light">3</button>-->
                     </div>
                     <button type="button" class="btn btn-light btn-next" onclick="nextActive()"><i class="bi bi-chevron-right"></i></button>
-                    <button type="button" class="btn btn-light btn-next" onclick=""><i class="bi bi-chevron-double-right"></i></button>
+                    <button type="button" class="btn btn-light btn-next" onclick="lastActive()"><i class="bi bi-chevron-double-right"></i></button>
                 </div>
             </div>
         </main>

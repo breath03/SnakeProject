@@ -4,13 +4,55 @@
 <!--    <select id="ViewCommunity" resultType="com.project.SnakeProject.vo.CommunityVo">-->
 <!--        select ComIdx,ComCateIdx,MIdx,ComTitle,ComContent,to_char(ComRegDate),to_char(ComDelDate),to_char(ComUpDate),ComintoDate,ComToCount,to_char(ComStartDate),to_char(ComEndDate) from Tbl_Community-->
 <!--    </select>-->
+<!--    <select id="ViewCommunity" resultType="com.project.SnakeProject.vo.CommunityVo">-->
+<!--        select ComIdx,ComCateIdx,MIdx,ComToCount, ComintoDate, ComTitle,ComContent,-->
+<!--               to_char(ComRegDate, 'YYYY-MM-DD HH24:MI'),-->
+<!--               to_char(ComDelDate, 'YYYY-MM-DD HH24:MI'),-->
+<!--                to_char(ComUpDate, 'YYYY-MM-DD HH24:MI'),-->
+<!--                to_char(ComStartDate, 'YYYY-MM-DD HH24:MI'),-->
+<!--                to_char(ComEndDate, 'YYYY-MM-DD HH24:MI')-->
+<!--        from Tbl_Community-->
+<!--    </select>-->
+
     <select id="ViewCommunity" resultType="com.project.SnakeProject.vo.CommunityVo">
-        select ComIdx,ComCateIdx,MIdx,ComToCount, ComintoDate, ComTitle,ComContent,
-               to_char(ComRegDate, 'YYYY-MM-DD HH24:MI:SS'),
-               to_char(ComDelDate, 'YYYY-MM-DD HH24:MI:SS'),
-                to_char(ComUpDate, 'YYYY-MM-DD HH24:MI:SS'),
-                to_char(ComStartDate, 'YYYY-MM-DD HH24:MI:SS'),
-                to_char(ComEndDate, 'YYYY-MM-DD HH24:MI:SS')
-        from Tbl_Community
+        SELECT
+            c.ComIdx,
+            c.ComCateIdx,
+            c.MIdx,
+            c.ComToCount,
+            c.ComintoDate,
+            c.ComTitle,
+            c.ComContent,
+            to_char(c.ComRegDate, 'YYYY-MM-DD HH24:MI') AS ComRegDate,
+            to_char(c.ComDelDate, 'YYYY-MM-DD HH24:MI') AS ComDelDate,
+            to_char(c.ComUpDate, 'YYYY-MM-DD HH24:MI') AS ComUpDate,
+            to_char(c.ComStartDate, 'YYYY-MM-DD HH24:MI') AS ComStartDate,
+            to_char(c.ComEndDate, 'YYYY-MM-DD HH24:MI') AS ComEndDate,
+            COUNT(ts.MIdx) AS MemberCount
+        FROM
+            Tbl_Community c
+        LEFT JOIN
+            Tbl_TogetherStudy ts
+        ON
+            c.ComIdx = ts.ComIdx
+        GROUP BY
+            c.ComIdx,
+            c.ComCateIdx,
+            c.MIdx,
+            c.ComToCount,
+            c.ComintoDate,
+            c.ComTitle,
+            c.ComContent,
+            c.ComRegDate,
+            c.ComDelDate,
+            c.ComUpDate,
+            c.ComStartDate,
+            c.ComEndDate
+        ORDER BY
+            c.ComIdx
     </select>
+
+<!--    <select id="ViewTogetherStudy" resultType="">-->
+<!--        select * from Tbl_TogetherStudy where ComIdx = #{ComIdx}-->
+<!--    </select>-->
 </mapper>

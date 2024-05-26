@@ -34,7 +34,7 @@ public class HomeController {
     @Autowired
     private StudyGImgImpl studyGImgImpl;
     @Autowired
-    MemberService memberService;
+    private MemberService memberService;
 
 //    @RequestMapping(value = "/")
 //    public String home(Model model){

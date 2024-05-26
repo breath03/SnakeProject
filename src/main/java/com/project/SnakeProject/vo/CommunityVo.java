@@ -8,6 +8,8 @@ public class CommunityVo {
 
   String ComRegDate, ComDelDate, ComUpDate, ComStartDate, ComEndDate;
 
+  int MemberCount;
+
 
 
   public CommunityVo(int comIdx, int comCateIdx, int MIdx, int comToCount, int comintoDate, String comTitle, String comContent, String comRegDate, String comDelDate, String comUpDate, String comStartDate, String comEndDate) {
@@ -23,6 +25,22 @@ public class CommunityVo {
     ComUpDate = comUpDate;
     ComStartDate = comStartDate;
     ComEndDate = comEndDate;
+  }
+
+  public CommunityVo(int comIdx, int comCateIdx, int MIdx, int comToCount, int comintoDate, String comTitle, String comContent, String comRegDate, String comDelDate, String comUpDate, String comStartDate, String comEndDate, int memberCount) {
+    ComIdx = comIdx;
+    ComCateIdx = comCateIdx;
+    this.MIdx = MIdx;
+    ComToCount = comToCount;
+    ComintoDate = comintoDate;
+    ComTitle = comTitle;
+    ComContent = comContent;
+    ComRegDate = comRegDate;
+    ComDelDate = comDelDate;
+    ComUpDate = comUpDate;
+    ComStartDate = comStartDate;
+    ComEndDate = comEndDate;
+    MemberCount = memberCount;
   }
 
   public int getComIdx() {
@@ -119,5 +137,13 @@ public class CommunityVo {
 
   public void setComEndDate(String comEndDate) {
     ComEndDate = comEndDate;
+  }
+
+  public int getMemberCount() {
+    return MemberCount;
+  }
+
+  public void setMemberCount(int memberCount) {
+    MemberCount = memberCount;
   }
 }
