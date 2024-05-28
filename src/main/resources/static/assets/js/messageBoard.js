@@ -11,15 +11,18 @@ const categoryNameEls = document.querySelectorAll('section.messageBoard .contain
 
 buttonEls.forEach(function(buttonEl) {
   buttonEl.addEventListener('click', function() {
-    const activeEl = document.querySelector('#btn-group .btn.active')
-    if (activeEl) {
-      activeEl.classList.remove('active')
-      buttonEl.classList.add('active')
-      console.log(buttonEl.innerText)
-    }else {
-      buttonEl.classList.add('active')
-      console.log(buttonEl.innerText)
-    }
+    // const activeEl = document.querySelector('#btn-group .btn.active')
+      if(buttonEl)  {
+        // activeEl.classList.remove('active')
+        // buttonEl.classList.add('active')
+        console.log(buttonEl.innerText)
+        const urlParams = new URL(location.href).searchParams;
+        window.location.href = `/messageBoard?pageGroup=${urlParams.get("pageGroup")}&groupCommunity=${buttonEl.innerText}`;
+      }else {
+        // buttonEl.classList.add('active')
+        console.log(buttonEl.innerText)
+        window.alert("다시시도해주세요");
+      }
   })
 })
 

@@ -20,7 +20,7 @@
 <!--                <p th:text="${ViewCommunityCategory}"></p>-->
                 <div class="category" th:each="groupCategory : ${ViewCommunityCategory}">
                     <th:block th:each="CommunityCategory : ${groupCategory}">
-                        <div class="categoryName" th:text="${CommunityCategory.ComCateName}"></div>
+                        <div class="categoryName" th:id="categoryID + ${CommunityCategory.ComCateIdx}" th:text="${CommunityCategory.ComCateName}"></div>
                     </th:block>
 <!--                    <div class="categoryName active">공부</div>-->
 <!--                    <div class="categoryName">자기계발</div>-->
@@ -82,12 +82,15 @@
                     <button type="button" class="btn btn-light btn-before" onclick="firstActive()"><i class="bi bi-chevron-double-left"></i></button>
                     <button type="button" class="btn btn-light btn-before" onclick="beforeActive()"><i class="bi bi-chevron-left"></i></button>
                     <div class="btn-group" id="btn-group" role="group" aria-label="Second group">
-                        <th:block th:each="two : ${ViewpageTables}">
-                            <th:block th:with="size=${two.size()}"></th:block>
+<!--                        <p th:text="${ViewpageTables.size()}"></p>-->
+                        <th:block th:with=" size = ${ViewpageTables[(parameterPageGroup - 1)].size()}">
+                            <th:block th:with=" value = ${parameterPageGroup * 10 - (10 - size)}">
+                                <th:block th:each="i : ${#numbers.sequence((parameterPageGroup - 1) * 10 + 1, value)}">
+                                    <button type="button" th:classappend="${i == parameterCommunity} ? 'active'" th:text="${i}" class="btn btn-light">1</button>
+                                </th:block>
+                            </th:block>
                         </th:block>
-                        <th:block th:each="i : ${#numbers.sequence((parameterPageGroup - 1) * 10 + 1, parameterPageGroup * 10)}">
-                            <button type="button" th:classappend="${i == parameterCommunity} ? 'active'" th:text="${i}" class="btn btn-light">1</button>
-                        </th:block>
+
 
 
 <!--                        <button type="button" id="button1" class="btn btn-light active">1</button>-->
