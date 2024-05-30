@@ -78,18 +78,6 @@ public class HomeController {
 //        return int(result, HttpStatus.OK);
     }
 
-//    @RequestMapping(value = "/updateSeat")
-//    public String home(Model model, StudyInInfoVo studyInInfoVo) {
-//        int CheckUpdate = studyInInfoImpl.UpdateStudyInInfo(studyInInfoVo);
-//
-//        if(CheckUpdate >= 1) {
-//
-//        }else{
-//
-//        }
-//
-//        return "content/home";
-//    }
 
     @PostMapping("/login")
     public String home(MemberVo memberVo, Model model, HttpServletRequest request) throws Exception {

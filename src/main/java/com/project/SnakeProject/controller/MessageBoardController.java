@@ -6,9 +6,12 @@ import com.project.SnakeProject.service.impl.CommunityImpl;
 import com.project.SnakeProject.vo.CommunityCategoryVo;
 import com.project.SnakeProject.vo.CommunityVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ public class MessageBoardController {
                                @RequestParam("pageGroup") int parameterPageGroup,
                                @RequestParam("category") int parameterCategory, Model model) {
         List<CommunityCategoryVo> CCtables = communityCategoryImpl.ViewCommunityCategory();
-        List<CommunityVo> Ctables = communityImpl.ViewCommunity();
+        List<CommunityVo> Ctables = communityImpl.ViewCommunity(parameterCategory);
 
         List<List<CommunityCategoryVo>> groupedCCtables = new ArrayList<>();
         for(int i = 0; i < CCtables.size(); i += 6) {
@@ -57,4 +60,5 @@ public class MessageBoardController {
 
         return "content/messageBoard";
     }
+
 }

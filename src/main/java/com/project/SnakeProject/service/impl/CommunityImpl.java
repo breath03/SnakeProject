@@ -15,8 +15,8 @@ public class CommunityImpl implements Community {
   private CommunityMapper mapper;
 
   @Override
-  public List<CommunityVo> ViewCommunity() {
-    return mapper.ViewCommunity();
+  public List<CommunityVo> ViewCommunity(int categoryID) {
+    return mapper.ViewCommunity(categoryID);
   }
 
 }

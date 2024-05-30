@@ -7,5 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface CommunityMapper {
-  List<CommunityVo> ViewCommunity();
+  List<CommunityVo> ViewCommunity(int categoryID);
+
 }

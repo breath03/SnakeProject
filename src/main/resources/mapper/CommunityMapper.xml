@@ -35,6 +35,10 @@
             Tbl_TogetherStudy ts
         ON
             c.ComIdx = ts.ComIdx
+        <if test="categoryID != 0">
+            WHERE
+            c.ComCateIdx = #{categoryID}
+        </if>
         GROUP BY
             c.ComIdx,
             c.ComCateIdx,

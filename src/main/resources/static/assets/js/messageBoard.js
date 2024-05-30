@@ -43,15 +43,18 @@ categoryNameEls.forEach(function(categoryNameEl) {
       categoryNameEl.classList.add('active')
       // console.log(categoryNameEl.innerText)
       // console.log((categoryNameEl.id).substr(10))
+      // submitCategoryID((categoryNameEl.id).substr(10))
       window.location.href = `/messageBoard?category=${Number((categoryNameEl.id).substr(10))}&pageGroup=1&groupCommunity=1`;
     }else {
       categoryNameEl.classList.add('active')
       // console.log(categoryNameEl.innerText)
       // console.log((categoryNameEl.id).substr(10))
+      // submitCategoryID((categoryNameEl.id).substr(10))
       window.location.href = `/messageBoard?category=${Number((categoryNameEl.id).substr(10))}&pageGroup=1&groupCommunity=1`;
     }
   })
 })
+
 
 
 
