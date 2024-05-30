@@ -23,7 +23,9 @@ public class MessageBoardController {
     private CommunityImpl communityImpl;
 
     @GetMapping("/messageBoard")
-    public String messageBoard(@RequestParam("groupCommunity") int parameterCommunity,@RequestParam("pageGroup") int parameterPageGroup, Model model) {
+    public String messageBoard(@RequestParam("groupCommunity") int parameterCommunity,
+                               @RequestParam("pageGroup") int parameterPageGroup,
+                               @RequestParam("category") int parameterCategory, Model model) {
         List<CommunityCategoryVo> CCtables = communityCategoryImpl.ViewCommunityCategory();
         List<CommunityVo> Ctables = communityImpl.ViewCommunity();
 
@@ -34,23 +36,24 @@ public class MessageBoardController {
         }
 
         List<List<CommunityVo>> groupedCtables = new ArrayList<>();
-        for(int i = 0; i < Ctables.size(); i += 10) {
-            int end = Math.min(i + 10, Ctables.size());
+        for(int i = 0; i < Ctables.size(); i += 3) {
+            int end = Math.min(i + 3, Ctables.size());
             groupedCtables.add(Ctables.subList(i, end));
         }
 
         List<List<List<CommunityVo>>> pageTables = new ArrayList<>();
-        for(int i = 0; i < groupedCtables.size(); i += 10) {
-            int end = Math.min(i + 10, groupedCtables.size());
+        for(int i = 0; i < groupedCtables.size(); i += 3) {
+            int end = Math.min(i + 3, groupedCtables.size());
             pageTables.add(groupedCtables.subList(i, end));
         }
 
 
         model.addAttribute("ViewCommunityCategory", groupedCCtables);
         model.addAttribute("ViewCommunity", groupedCtables);
-        model.addAttribute("parameterCommunity", parameterCommunity);
         model.addAttribute("ViewpageTables", pageTables);
+        model.addAttribute("parameterCommunity", parameterCommunity);
         model.addAttribute("parameterPageGroup", parameterPageGroup);
+        model.addAttribute("parameterCategory", parameterCategory);
 
         return "content/messageBoard";
     }

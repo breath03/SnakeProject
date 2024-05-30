@@ -15,12 +15,12 @@ buttonEls.forEach(function(buttonEl) {
       if(buttonEl)  {
         // activeEl.classList.remove('active')
         // buttonEl.classList.add('active')
-        console.log(buttonEl.innerText)
+        // console.log(buttonEl.innerText)
         const urlParams = new URL(location.href).searchParams;
-        window.location.href = `/messageBoard?pageGroup=${urlParams.get("pageGroup")}&groupCommunity=${buttonEl.innerText}`;
+        window.location.href = `/messageBoard?category=${urlParams.get("category")}&pageGroup=${urlParams.get("pageGroup")}&groupCommunity=${buttonEl.innerText}`;
       }else {
         // buttonEl.classList.add('active')
-        console.log(buttonEl.innerText)
+        // console.log(buttonEl.innerText)
         window.alert("다시시도해주세요");
       }
   })
@@ -35,17 +35,20 @@ function check() {
 
 
 
-
 categoryNameEls.forEach(function(categoryNameEl) {
   categoryNameEl.addEventListener('click', function() {
     const activeEl = document.querySelector('section.messageBoard .container .category .categoryName.active')
     if(activeEl) {
       activeEl.classList.remove('active')
       categoryNameEl.classList.add('active')
-      console.log(categoryNameEl.innerText)
+      // console.log(categoryNameEl.innerText)
+      // console.log((categoryNameEl.id).substr(10))
+      window.location.href = `/messageBoard?category=${Number((categoryNameEl.id).substr(10))}&pageGroup=1&groupCommunity=1`;
     }else {
       categoryNameEl.classList.add('active')
-      console.log(categoryNameEl.innerText)
+      // console.log(categoryNameEl.innerText)
+      // console.log((categoryNameEl.id).substr(10))
+      window.location.href = `/messageBoard?category=${Number((categoryNameEl.id).substr(10))}&pageGroup=1&groupCommunity=1`;
     }
   })
 })
@@ -63,75 +66,48 @@ contentsEls.forEach(function (contentsEl) {
 
 
 function beforeActive() {
-  const activeButton = document.querySelector('#btn-group .btn.active')
-  const buttonArray =  Array.from(buttonEls);
-  const targetButton = buttonArray.find(function(button) {
-    return Number(button.innerText) === Number(activeButton.innerText) - 1;
-  })
-  if(targetButton) {
-    activeButton.classList.remove('active')
-    targetButton.classList.add('active')
-  } else {
-    console.log('해당값없음')
-  }
-  
+  // const activeButton = document.querySelector('#btn-group .btn.active')
+  // const buttonArray =  Array.from(buttonEls);
+  // const targetButton = buttonArray.find(function(button) {
+  //   return Number(button.innerText) === Number(activeButton.innerText) - 1;
+  // })
+  // if(targetButton) {
+  //   activeButton.classList.remove('active')
+  //   targetButton.classList.add('active')
+  // } else {
+  //   console.log('해당값없음')
+  // }
+
+  const urlParams = new URL(location.href).searchParams;
+  window.location.href = `/messageBoard?category=${urlParams.get("category")}
+                          &pageGroup=${Number(urlParams.get("pageGroup")) - 1}
+                          &groupCommunity=${(Number(urlParams.get("pageGroup")) * 3) - 3}`;
   
   
   // console.log(activeButton.innerText - 1)
 }
+
+
 function nextActive() {
-  const activeButton = document.querySelector('#btn-group .btn.active')
-  const buttonArray =  Array.from(buttonEls);
-  const targetButton = buttonArray.find(function(button) {
-    return Number(button.innerText) === Number(activeButton.innerText) + 1;
-  })
-  
-  if(targetButton) {
-    activeButton.classList.remove('active')
-    targetButton.classList.add('active')
-  }else {
-    console.log('해당값 없음')
-  }
-  
-
-  // console.log(targetButton)
-  // console.log(Number(activeButton.innerText) + 1)
+  // 현재 url의 pageGroup의 값을 가져와서 1이 아니면 그 값에 1을 추가한다. (일단 groupCommunity는 그냥 냅둔다.)
+  const urlParams = new URL(location.href).searchParams;
+  // console.log(urlParams.get("pageGroup") != 1)
+  window.location.href = `/messageBoard?category=${urlParams.get("category")}
+                          &pageGroup=${Number(urlParams.get("pageGroup")) + 1}
+                          &groupCommunity=${(Number(urlParams.get("pageGroup")) * 3) + 1}`;
 }
+
+
 function firstActive() {
-  let ButtonText = []
-  const buttonArray =  Array.from(buttonEls);
-  buttonArray.forEach(function(Button) {
-    ButtonText.push(Button.innerText)
-  })
-  const targetButton = buttonArray.find(function(button) {
-    return Number(button.innerText) === Math.min(...ButtonText);
-  })
-
-  if(targetButton) {
-    const activeButton = document.querySelector('#btn-group .btn.active')
-    activeButton.classList.remove('active')
-    targetButton.classList.add('active')
-  }else{
-    console.log('해당값 없음')
-  }
-
+  const urlParams = new URL(location.href).searchParams;
+  window.location.href = `/messageBoard?category=${urlParams.get("category")}&pageGroup=1&groupCommunity=1`;
 }
-function lastActive() {
-  let ButtonText = []
-  const buttonArray =  Array.from(buttonEls);
-  buttonArray.forEach(function(Button) {
-    ButtonText.push(Button.innerText)
-  })
-  const targetButton = buttonArray.find(function(button) {
-    return Number(button.innerText) === Math.max(...ButtonText);
-  })
 
-  if(targetButton) {
-    const activeButton = document.querySelector('#btn-group .btn.active')
-    activeButton.classList.remove('active')
-    targetButton.classList.add('active')
-  }else{
-    console.log('해당값 없음')
-  }
 
+function lastActive(threeList, twoList) {
+  //3차원 배열(ViewpageTables)의 사이즈를 구하고 가장큰값에 해당하는 값을 pageGroup에 넣고 groupCommunity은
+  // pageGroup에에 해당하는 3차원배열안에 들어있는 2차원 배열의 사이즈에서 가장큰값으로 설정해준다.
+  // console.log(threeList, twoList)
+  const urlParams = new URL(location.href).searchParams;
+  window.location.href = `/messageBoard?category=${urlParams.get("category")}&pageGroup=${threeList}&groupCommunity=${twoList + ((threeList - 1) * 3)}`;
 }
