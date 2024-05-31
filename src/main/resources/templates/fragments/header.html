@@ -36,8 +36,19 @@
                         <li><a class="nav-link scrollto" id="messageBoard" href="messageBoard?category=0&pageGroup=1&groupCommunity=1">게시판</a></li>
 <!--                        <li><a class="nav-link scrollto" id="messageBoard" href="messageBoard">어서오세요 ㄱㄱㄱ님.</a></li>-->
 
-                        <li th:if="${session.username == null}"><button type="button" id="appointment-btn" class="appointment-btn scrollto">로그인/회원가입</button></li>
-                        <li th:if="${session.username != null}"><span th:text="${session.username}"></span></li>
+                        <li th:if="${session.username == null}">
+                            <button type="button" id="appointment-btn" class="appointment-btn scrollto">로그인/회원가입</button>
+                        </li>
+                        <th:block th:if="${session.username != null}">
+                            <li>
+                                <a th:href="@{mypage(id=${session.userid})}" id="mypage">
+                                    <span>마이페이지</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="logout.do" class="appointment-btn1"><span class="logoutspan">로그아웃</span></a>
+                            </li>
+                        </th:block>
 
                     </ul>
                     <i class="bi bi-list mobile-nav-toggle"></i>

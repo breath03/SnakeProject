@@ -1,33 +1,20 @@
 package com.project.SnakeProject.service;
 
-import com.project.SnakeProject.mapper.MemberMapper;
+import com.project.SnakeProject.vo.CommunityVo;
 import com.project.SnakeProject.vo.MemberVo;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import java.util.List;
 
-@Service
-public class MemberService {
-    @Autowired
-    MemberMapper memberMapper;
-    public int addMember(MemberVo memberVo) {
-        return memberMapper.addMember(memberVo);
-    }
-
-    public boolean selectId(String id) {
-        return memberMapper.selectId(id);
-    }
-
-    public String login(MemberVo memberVo, HttpSession session) {
-        String name = memberMapper.login(memberVo);
-        if(name != null) {
-            session.setAttribute("userId", memberVo.getMemberId());
-            session.setAttribute("username", name);
-        }
-        return name;
-    }
-    public void logout(HttpSession session){
-        session.invalidate();
-    }
+public interface MemberService {
+    public int addMember(MemberVo memberVo);
+    // 중복확인
+    public boolean selectId(String Id);
+    // 로그인
+    public String login(MemberVo memberVo, HttpSession session);
+    // 개인정보수정 이동시 나오는 정보들
+    public MemberVo selectInfo(String id);
+    // 개인정보 수정
+    public int updateInfo(MemberVo memberVo);
+    List<CommunityVo> MyPageCommunity(String id);
 }

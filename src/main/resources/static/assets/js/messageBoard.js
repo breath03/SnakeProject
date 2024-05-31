@@ -63,7 +63,8 @@ const contentsEls = document.querySelectorAll('section.messageBoard .container .
 contentsEls.forEach(function (contentsEl) {
   contentsEl.addEventListener('click', function () {
     // check()
-    window.location.href = "/post";
+    console.log(contentsEl.classList)
+    // window.location.href = "/post";
   })
 })
 

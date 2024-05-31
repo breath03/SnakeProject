@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.project.SnakeProject.mapper.MemberMapper">
+    
+    <resultMap id="CommunityCategoryVo" type="CommunityCategoryVo">
+        <constructor>
+            <arg column="ComCateName" javaType="String" />
+        </constructor>
+    </resultMap>
+
+    <resultMap id="MemberVo" type="MemberVo">
+        <constructor>
+            <arg column="MemberName" javaType="String" />
+        </constructor>
+    </resultMap>
+
+    <resultMap id="CommunityVo" type="CommunityVo">
+        <result column="ComIdx" property="ComIdx" />
+        <result column="ComToCount" property="ComToCount" />
+        <result column="ComintoDate" property="ComintoDate" />
+        <result column="ComTitle" property="ComTitle" />
+        <result column="ComRegDate" property="ComRegDate" />
+        <collection property="communityCategoryVo" resultMap="CommunityCategoryVo" />
+        <collection property="memberVo" resultMap="MemberVo" />
+    </resultMap>
+    
     <insert id="addMember" parameterType="map">
 <!--        <selectKey keyProperty="memSeq" resultType="java.lang.Integer" order="BEFORE">-->
 <!--            select MEM_SEQ.nextval from dual-->
@@ -26,4 +49,40 @@
     <select id="login" resultType="String">
         select MemberName from tbl_member where MemberId = #{MemberId} and MemberPw = #{MemberPw}
     </select>
+    <select id="selectInfo" resultType="com.project.SnakeProject.vo.MemberVo">
+        select * from tbl_member where MemberId = #{MemberId}
+    </select>
+    <update id="updateInfo" parameterType="map">
+        update tbl_member set
+            MemberPw = #{MemberPw},
+            MemberName = #{MemberName},
+            MemberPhone = #{MemberPhone}
+        where MemberId = #{MemberId}
+    </update>
+    <select id="MyPageCommunity" resultMap="CommunityVo">
+        SELECT
+            c.ComIdx,
+            MemberName,
+            tcc.ComCateName,
+            c.ComToCount,
+            c.ComintoDate,
+            c.ComTitle,
+            to_char(c.ComRegDate, 'YYYY-MM-DD HH24:MI') AS ComRegDate
+        FROM
+            Tbl_Community c
+                inner JOIN tbl_community_category tcc ON tcc.ComCateIdx = c.ComCateIdx
+                inner join tbl_member tm on tm.MIdx = c.MIdx
+        where c.MIdx = (select MIdx from tbl_member where MemberId = #{MemberId})
+        GROUP BY
+            c.ComIdx,
+            MemberName,
+            tcc.ComCateName,
+            c.ComToCount,
+            c.ComintoDate,
+            c.ComTitle,
+            c.ComRegDate
+        ORDER BY
+            c.ComIdx
+    </select>
+
 </mapper>

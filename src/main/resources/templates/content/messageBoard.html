@@ -49,7 +49,7 @@
 
                             <th:block th:if="${index.count} == ${parameterCommunity}" >
                                 <th:block th:each="community : ${groupCommunity}">
-                                    <div class="content">
+                                    <div class="content" th:classappend="${community.ComIdx}">
                                         <h4 class="content-title" th:text="${community.ComTitle}"></h4>
                                         <h5 class="content-body" th:text="${community.ComContent}"></h5>
                                         <div class="content-date"><i class="bi bi-calendar-event"></i><span th:text="' ' + ${community.ComStartDate}"></span></div>

@@ -1,17 +1,30 @@
 package com.project.SnakeProject.vo;
 
-import java.util.Date;
-
 public class CommunityVo {
   int ComIdx, ComCateIdx, MIdx, ComToCount, ComintoDate;
   String ComTitle, ComContent;
-
   String ComRegDate, ComDelDate, ComUpDate, ComStartDate, ComEndDate;
-
   int MemberCount;
 
+  // 카테고리 정보 가져오는 vo
+  private CommunityCategoryVo communityCategoryVo;
+  private MemberVo memberVo;
 
+  public CommunityVo() {
+    // 기본 생성자
+  }
+  // 개인정보 페이지에서 본인이 작성한 글 가져오는 생성자
+  public CommunityVo(int comIdx, int comToCount, int comintoDate, String comTitle, String comRegDate, CommunityCategoryVo communityCategoryVo, MemberVo memberVo) {
+    ComIdx = comIdx;
+    ComToCount = comToCount;
+    ComintoDate = comintoDate;
+    ComTitle = comTitle;
+    ComRegDate = comRegDate;
+    this.communityCategoryVo = communityCategoryVo;
+    this.memberVo = memberVo;
+  }
 
+  // 백지
   public CommunityVo(int comIdx, int comCateIdx, int MIdx, int comToCount, int comintoDate, String comTitle, String comContent, String comRegDate, String comDelDate, String comUpDate, String comStartDate, String comEndDate) {
     ComIdx = comIdx;
     ComCateIdx = comCateIdx;
@@ -145,5 +158,21 @@ public class CommunityVo {
 
   public void setMemberCount(int memberCount) {
     MemberCount = memberCount;
+  }
+
+  public CommunityCategoryVo getCommunityCategoryVo() {
+    return communityCategoryVo;
+  }
+
+  public void setCommunityCategoryVo(CommunityCategoryVo communityCategoryVo) {
+    this.communityCategoryVo = communityCategoryVo;
+  }
+
+  public MemberVo getMemberVo() {
+    return memberVo;
+  }
+
+  public void setMemberVo(MemberVo memberVo) {
+    this.memberVo = memberVo;
   }
 }

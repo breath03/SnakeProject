@@ -4,6 +4,15 @@ public class CommunityCategoryVo {
   int ComCateIdx;
   String ComCateName, ComCateUseState;
 
+  public CommunityCategoryVo() {
+    // 기본 생성자
+  }
+
+  // CommunityVo에서 사용할 카테고리 이름 하나만 정의
+  public CommunityCategoryVo(String comCateName) {
+    ComCateName = comCateName;
+  }
+
   public CommunityCategoryVo(int ComCateIdx, String ComCateName, String ComCateUseState) {
     this.ComCateIdx = ComCateIdx;
     this.ComCateName = ComCateName;

@@ -3,5 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+    <typeAliases>
+        <typeAlias alias="MemberVo" type="com.project.SnakeProject.vo.MemberVo"></typeAlias>
+        <typeAlias alias="CommunityVo" type="com.project.SnakeProject.vo.CommunityVo"></typeAlias>
+        <typeAlias alias="CommunityCategoryVo" type="com.project.SnakeProject.vo.CommunityCategoryVo"></typeAlias>
+    </typeAliases>
+    <mappers>
+        <package name="com.project.SnakeProject.mapper"/>
+    </mappers>
 </configuration>
