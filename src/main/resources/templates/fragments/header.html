@@ -41,9 +41,12 @@
                         </li>
                         <th:block th:if="${session.username != null}">
                             <li>
-                                <a th:href="@{mypage(id=${session.userid})}" id="mypage">
+                                <a th:href="@{mypage(id=${session.userid}, pageGroup=1, groupCommunity=1)}" id="mypage">
                                     <span>마이페이지</span>
                                 </a>
+                            </li>
+                            <li>
+                                <span th:text="${session.username} + 님."></span>
                             </li>
                             <li>
                                 <a href="logout.do" class="appointment-btn1"><span class="logoutspan">로그아웃</span></a>

@@ -27,7 +27,10 @@ public class MypageController {
     private CommunityServiceImpl communityServiceImpl;
 
     @RequestMapping(value="/mypage", method = RequestMethod.GET)
-    public String mypage(String id, Model model, HttpServletRequest request) throws Exception {
+    public String mypage(Model model, HttpServletRequest request,
+                        @RequestParam("pageGroup") int parameterPageGroup,
+                        @RequestParam("groupCommunity") int parameterCommnuity,
+                        @RequestParam("id") String id) throws Exception {
         HttpSession session = request.getSession();
         if(session.getAttribute("userid") != null) {
             // 개인정보 가져오는 service
@@ -37,11 +40,25 @@ public class MypageController {
             // 개인 좌석 시간 및 룸 시간 충전
 
             // 개인이 작성한 글 보여주는 게시판
-            List<CommunityVo> community = new ArrayList<>();
-            community.addAll(memberService.MyPageCommunity(id));
+            List<CommunityVo> community = memberService.MyPageCommunity(id);
+            // community.addAll(memberService.MyPageCommunity(id));
 
-            //^_^
-            model.addAttribute("community", community);
+            List<List<CommunityVo>> twoList = new ArrayList<>();
+            for(int i = 0; i < community.size(); i += 4) {
+                int end = Math.min(i + 4, community.size());
+                twoList.add(community.subList(i, end));
+            }
+
+            List<List<List<CommunityVo>>> threeList = new ArrayList<>();
+            for(int i = 0; i < twoList.size(); i += 4) {
+                int end = Math.min(i + 4, twoList.size());
+                threeList.add(twoList.subList(i, end));
+            }
+
+            model.addAttribute("viewCommunity", twoList); // 2차원
+            model.addAttribute("ViewpageTables", threeList); // 3차원
+            model.addAttribute("parameterPageGroup", parameterPageGroup);
+            model.addAttribute("parameterCommnuity", parameterCommnuity);
             model.addAttribute("title", "마이페이지");
             return "content/mypage";
         } else {
@@ -54,7 +71,7 @@ public class MypageController {
 
     @GetMapping("/ShowContent")
     @ResponseBody
-    public List<List<List<CommunityVo>>>ShowContent(String id) {
+    public List<List<List<CommunityVo>>> ShowContent(String id) {
 //        List<CommunityVo> Ctables = new ArrayList<CommunityVo>();
 //        Ctables.addAll(memberService.MyPageCommunity(id));
         List<CommunityVo> Ctables = memberService.MyPageCommunity(id);

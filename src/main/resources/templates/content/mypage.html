@@ -14,9 +14,9 @@
                 <div class="lnb_sec line">
                     <h1>마이페이지</h1>
                     <ul class="lnbnew">
-                        <li class="mypageBtn active"><a href="javascript:void(0);">개인 정보 수정eddd</a></li>
-                        <li class="mytimeBtn active"><a href="javascript:void(0);">시간 확인 및 충전</a></li>
-                        <li class="mywriteBtn active"><a href="javascript:void(0)">작성한 글 확인</a></li>
+                        <li class="mywriteBtn active"><a href="javascript:void(0)" onclick="myWritebtn()">내가 쓴 글</a></li>
+                        <li class="mypageBtn active"><a href="javascript:void(0);" onclick="myUpdatebtn()">개인 정보 수정</a></li>
+                        <li class="mytimeBtn active"><a href="javascript:void(0);" onclick="myAddbtn()">시간 확인 및 충전</a></li>
                         <li>
                             <a href="javascript:show()">회원 탈퇴</a>
 <!--                            <button type="button" id="deletebtn" class="deletebtn">회원 탈퇴</button>-->
@@ -104,47 +104,62 @@
 
             <!-- 작성한 글 확인 -->
             <div class="col-8 mytest">
-                <th:block th:if="${community.size() != 0}">
+                <th:block th:if="${viewCommunity.size() != 0}">
                     <div class="row" id="communityContainer">
-                        <!--
-                        <div class="col-6 mywrite" th:each="List : ${community}">
-                            <div class="writecontent">
-                                <a href="/">
-                                    <h4 th:text="${List.getComTitle()}"></h4>
-                                </a>
-                                <table class="table">
-                                    <tr>
-                                        <th>작성자</th>
-                                        <td th:text="${List.getMemberVo().getMemberName()}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>작성날짜</th>
-                                        <td th:text="${List.getComRegDate()}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>카테고리</th>
-                                        <td th:text="${List.getCommunityCategoryVo().getComCateName()}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>조회수</th>
-                                        <td th:text="${List.getComintoDate()}"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        -->
+                        <th:block th:each="groupCommunity, index : ${viewCommunity}">
+                            <th:block th:if="${index.count} == ${parameterCommnuity}" >
+                                <th:block th:each="community : ${groupCommunity}">
+                                    <div class="col-6 mywrite">
+                                        <div class="writecontent">
+                                            <a href="/">
+                                                <h4 th:text="${community.comTitle}"></h4>
+                                            </a>
+                                            <table class="table">
+                                                <tr>
+                                                    <th>작성자</th>
+                                                    <td th:text="${community.memberVo.memberName}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>작성날짜</th>
+                                                    <td th:text="${community.comRegDate}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>카테고리</th>
+                                                    <td th:text="${community.communityCategoryVo.comCateName}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>조회수</th>
+                                                    <td th:text="${community.comintoDate}"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </th:block>
+                        </th:block>
                     </div>
                     <div class="btn-section">
                         <button type="button" class="btn btn-light btn-before" onclick="firstActive()"><i class="bi bi-chevron-double-left"></i></button>
-                        <button type="button" class="btn btn-light btn-before" onclick="beforeActive()"><i class="bi bi-chevron-left"></i></button>
+                        <button type="button" th:if="${parameterPageGroup != 1}" class="btn btn-light btn-before" onclick="beforeActive()"><i class="bi bi-chevron-left"></i></button>
                         <div class="btn-group" id="btn-group" role="group" aria-label="Second group">
-
+                            <!--                        <p th:text="${ViewpageTables.size()}"></p>-->
+                            <th:block th:with=" size = ${ViewpageTables[(parameterPageGroup - 1)].size()}">
+                                <th:block th:with=" value = ${parameterPageGroup * 3 - (3 - size)}">
+                                    <th:block th:each="i : ${#numbers.sequence((parameterPageGroup - 1) * 3 + 1, value)}">
+                                        <button type="button" th:classappend="${i == parameterCommunity} ? 'active'" th:text="${i}" class="btn btn-light">1</button>
+                                    </th:block>
+                                </th:block>
+                            </th:block>
                         </div>
-                        <button type="button" class="btn btn-light btn-next" onclick="nextActive()"><i class="bi bi-chevron-right"></i></button>
-                        <button type="button" class="btn btn-light btn-next" onclick="lastActive()"><i class="bi bi-chevron-double-right"></i></button>
+                        <th:block th:with = "threeList = ${ViewpageTables.size()}">
+                            <th:block th:with = "twoList = ${ViewpageTables[threeList - 1].size()}">
+                                <button type="button" th:if="${parameterPageGroup} != ${threeList}" class="btn btn-light btn-next" onclick="nextActive()"><i class="bi bi-chevron-right"></i></button>
+                                <button type="button" class="btn btn-light btn-next" th:onclick="'lastActive(' + ${threeList} + ', ' + ${twoList} + ')'"><i class="bi bi-chevron-double-right"></i></button>
+                            </th:block>
+                        </th:block>
                     </div>
                 </th:block>
-                <th:block th:if="${community.size() == 0}">
+                <th:block th:if="${viewCommunity.size() == 0}">
                     <div class="row" id="item1">
                         <div class="col-12 mywrite">
                             <div class="text-center">
@@ -216,17 +231,17 @@
                             <b>비밀번호 확인</b>
                             <input type="password" class="passwrd" name="memberPw">
                         </div>
-                        <small>본인인증을 위해 비밀번호를 입력하세요.</small>
+                        <small class="checkMessage">본인인증을 위해 비밀번호를 입력하세요.</small>
                         <br>
                         <div class="chkk">
                             <b>동의함</b>
-                            <input type="checkbox" id="check" class="check">
+                            <input type="checkbox" class="check">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <div class="">
-                        <input type="button" value="회원 탈퇴하기" id="delbtn" class="delbtn">
+                        <input type="button" value="회원 탈퇴하기" id="delbtn" class="delbtn" onclick="delBtn()">
                     </div>
                 </div>
             </div>
@@ -285,124 +300,187 @@
         const mytimeBtn = document.querySelector(".mytimeBtn");
         const mywriteBtn = document.querySelector(".mywriteBtn");
 
+        const buttonEls = document.querySelectorAll('#btn-group .btn');
 
         const mypage = document.querySelector(".mypage");
         const mytime = document.querySelector(".mytime");
         const mytest = document.querySelector(".mytest");
 
-        $(document).ready(function () {
+        function myUpdatebtn() {
+            mytimeBtn.classList.remove('active')
+            mywriteBtn.classList.remove('active')
+            mypageBtn.classList.add('active')
+
+            mypage.style.display = "block";
             mytime.style.display = "none";
             mytest.style.display = "none";
+        }
 
-            mypageBtn.addEventListener('click', function () {
+        function myAddbtn() {
+            mypageBtn.classList.remove('active')
+            mywriteBtn.classList.remove('active')
+            mytimeBtn.classList.add('active')
 
-                mytimeBtn.classList.remove('active')
-                mywriteBtn.classList.remove('active')
-                mypageBtn.classList.add('active')
+            mytime.style.display = "block";
+            mypage.style.display = "none";
+            mytest.style.display = "none";
+        }
 
-                mypage.style.display = "block";
-                mytime.style.display = "none";
-                mytest.style.display = "none";
+        function myWritebtn() {
+            mypageBtn.classList.remove('active')
+            mytimeBtn.classList.remove('active')
+            mywriteBtn.classList.add('active')
 
-                const url = '/mypage?id=[[${session.userid}]]';
-                history.pushState(null, '', url);
-            })
+            mytest.style.display = "block";
+            mypage.style.display = "none";
+            mytime.style.display = "none";
+        }
 
-            mytimeBtn.addEventListener('click', function () {
-
-                mypageBtn.classList.remove('active')
-                mywriteBtn.classList.remove('active')
-                mytimeBtn.classList.add('active')
-
-                mytime.style.display = "block";
-                mypage.style.display = "none";
-                mytest.style.display = "none";
-
-                const url = '/mypage?id=[[${session.userid}]]';
-                history.pushState(null, '', url);
-            })
+        $(document).ready(function() {
+            mytime.style.display = "none";
+            mypage.style.display = "none";
+        })
 
 
-            mywriteBtn.addEventListener('click', function () {
-                // const urlParams = new URL(location.href).searchParams;
+        // $(document).ready(function () {
+        //     mytime.style.display = "none";
+        //     mytest.style.display = "none";
+        //
+        //     mypageBtn.addEventListener('click', function () {
+        //
+        //         mytimeBtn.classList.remove('active')
+        //         mywriteBtn.classList.remove('active')
+        //         mypageBtn.classList.add('active')
+        //
+        //         mypage.style.display = "block";
+        //         mytime.style.display = "none";
+        //         mytest.style.display = "none";
+        //
+        //     })
+        //
+        //     mytimeBtn.addEventListener('click', function () {
+        //
+        //         mypageBtn.classList.remove('active')
+        //         mywriteBtn.classList.remove('active')
+        //         mytimeBtn.classList.add('active')
+        //
+        //         mytime.style.display = "block";
+        //         mypage.style.display = "none";
+        //         mytest.style.display = "none";
+        //     })
+        //
+        //
+        //     mywriteBtn.addEventListener('click', function () {
+        //         // const urlParams = new URL(location.href).searchParams;
+        //
+        //         mypageBtn.classList.remove('active')
+        //         mytimeBtn.classList.remove('active')
+        //         mywriteBtn.classList.add('active')
+        //
+        //         mytest.style.display = "block";
+        //         mypage.style.display = "none";
+        //         mytime.style.display = "none";
+        //     })
+        // })
 
-                mypageBtn.classList.remove('active')
-                mytimeBtn.classList.remove('active')
-                mywriteBtn.classList.add('active')
+        buttonEls.forEach(function(buttonEl) {
+            buttonEl.addEventListener('click', function() {
+                // const activeEl = document.querySelector('#btn-group .btn.active')
+                if(buttonEl)  {
+                    const urlParams = new URL(location.href).searchParams;
+                    window.location.href = `/mypage?id=[[${session.userid}]]&pageGroup=${urlParams.get("pageGroup")}&groupCommunity=${buttonEl.innerText}`;
+                    // const urlParams = new URL(location.href).searchParams;
+                    // const url = `/mypage?id=[[${session.userid}]]&pageGroup=${urlParams.get("pageGroup")}&groupCommunity=${buttonEl.innerText}`;
+                    // history.pushState(null, '', url);
+                    mytest.style.display = "block";
+                    mypage.style.display = "none";
+                    mytime.style.display = "none";
 
-                mytest.style.display = "block";
-                mypage.style.display = "none";
-                mytime.style.display = "none";
-
-                const url = '/mypage?id=[[${session.userid}]]&pageGroup=1&groupCommunity=1';
-                history.pushState(null, '', url);
-
-                function fetchCommunities(pageGroup = 1) {
-                    $.ajax({
-                        url: '/ShowContent',
-                        method: 'GET',
-                        data : {
-                            id:'[[${session.userid}]]'
-                        },
-                        success: function(result) {
-                            displayCommunities(result, pageGroup);
-                        },
-                        error: function(error) {
-                            console.error('Error fetching community data', error);
-                        }
-                    });
+                }else {
+                    // buttonEl.classList.add('active')
+                    // console.log(buttonEl.innerText)
+                    window.alert("다시시도해주세요");
                 }
-
-                function displayCommunities(data, pageGroup) {
-                    let communityContainer = $('#communityContainer');
-                    communityContainer.empty();
-
-                    let pageData = data[pageGroup - 1] || [];
-                    pageData.forEach(list => {
-                        list.forEach(item => {
-                            let communityHtml = `
-                            <div class="col-6 mywrite">
-                                <div class="writecontent">
-                                    <a href="/">
-                                        <h4>${item.comTitle}</h4>
-                                    </a>
-                                    <table class="table">
-                                        <tr>
-                                            <th>작성자</th>
-                                            <td>${item.memberVo.memberName}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>작성날짜</th>
-                                            <td>${item.comRegDate}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>카테고리</th>
-                                            <td>${item.communityCategoryVo.comCateName}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>조회수</th>
-                                            <td>${item.comintoDate}</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>`;
-                            communityContainer.append(communityHtml);
-                        });
-                    });
-
-                    // 페이지 버튼 생성
-                    let btnGroup = $('#btn-group');
-                    btnGroup.empty();
-                    for (let i = 1; i <= data.length; i++) {
-                        let buttonHtml = `<button type="button" class="btn btn-light ${i === pageGroup ? 'active' : ''}" onclick="fetchCommunities(${i})">${i}</button>`;
-                        btnGroup.append(buttonHtml);
-                    }
-                }
-
-                // 초기 데이터 로드
-                fetchCommunities();
             })
         })
+                // const url = '/mypage?id=[[${session.userid}]]&pageGroup=1&groupCommunity=1';
+                // history.pushState(null, '', url);
+                // let pageGroup = 1;
+                //
+                // let groupCommunity = 1;
+                //
+                // function fetchCommunities(pageGroup) {
+                //     $.ajax({
+                //         url: '/ShowContent',
+                //         method: 'GET',
+                //         data : {
+                //             id:'[[${session.userid}]]'
+                //         },
+                //         success: function(result) {
+                //             console.log(result);
+                //             displayCommunities(result, pageGroup);
+                //         },
+                //         error: function(error) {
+                //             console.error('Error fetching community data', error);
+                //         }
+                //     });
+                // }
+                //
+                // function displayCommunities(data, pageGroup) {
+                //     let communityContainer = $('#communityContainer');
+                //     communityContainer.empty();
+                //
+                //     let pageData = data[pageGroup - 1];
+                //     console.log(pageData);
+                //     let communityHtml = ``;
+                //
+                //     data.forEach(list => { // 2차원
+                //         for (let i = 0; i < Math.min(list.length, 3); i++) {
+                //             let item = list[i];
+                //             console.log(item);
+                //         // list.forEach(item => { // 1차원
+                //             // console.log("item", item.comTitle);
+                //             communityHtml = `
+                //                     <div class="col-6 mywrite">
+                //                         <div class="writecontent">
+                //                             <a href="/">
+                //                                 <h4>${item.comTitle}</h4>
+                //                             </a>
+                //                             <table class="table">
+                //                                 <tr>
+                //                                     <th>작성자</th>
+                //                                     <td>${item.memberVo.memberName}</td>
+                //                                 </tr>
+                //                                 <tr>
+                //                                     <th>작성날짜</th>
+                //                                     <td>${item.comRegDate}</td>
+                //                                 </tr>
+                //                                 <tr>
+                //                                     <th>카테고리</th>
+                //                                     <td>${item.communityCategoryVo.comCateName}</td>
+                //                                 </tr>
+                //                                 <tr>
+                //                                     <th>조회수</th>
+                //                                     <td>${item.comintoDate}</td>
+                //                                 </tr>
+                //                             </table>
+                //                         </div>
+                //                     </div>`;
+                //             communityContainer.append(communityHtml);
+                //         };
+                //
+                //     });
+                //
+                //     // 페이지 버튼 생성
+                //     let btnGroup = $('#btn-group');
+                //     btnGroup.empty();
+                //     for (let i = 1; i <= data.length; i++) {
+                //         let buttonHtml = `<button type="button" class="btn btn-light ${i === pageGroup ? 'active' : ''}" onclick="fetchCommunities(${i})">${i}</button>`;
+                //         btnGroup.append(buttonHtml);
+                //     }
+                // }
+                // // 초기 데이터 로드
+                // fetchCommunities(pageGroup);
 
         //동의함 체크
         const delbtn = document.getElementById('delbtn');
@@ -500,26 +578,31 @@
 
         function beforeActive() {
             const urlParams = new URL(location.href).searchParams;
-            window.location.href = `/mypage?id=[[${session.userid}]]
-                          &pageGroup=${Number(urlParams.get("pageGroup")) - 1}
-                          &groupCommunity=${(Number(urlParams.get("pageGroup")) * 3) - 3}`;
-
-
+            window.location.href = `/mypage?id=[[${session.userid}]]&pageGroup=${Number(urlParams.get("pageGroup")) - 1}&groupCommunity=${(Number(urlParams.get("pageGroup")) * 3) - 3}`;
             // console.log(activeButton.innerText - 1)
+            mytest.style.display = "block";
+            mypage.style.display = "none";
+            mytime.style.display = "none";
         }
 
         function nextActive() {
             // 현재 url의 pageGroup의 값을 가져와서 1이 아니면 그 값에 1을 추가한다. (일단 groupCommunity는 그냥 냅둔다.)
             const urlParams = new URL(location.href).searchParams;
             // console.log(urlParams.get("pageGroup") != 1)
-            window.location.href = `/mypage?id=[[${session.userid}]]
-                          &pageGroup=${Number(urlParams.get("pageGroup")) + 1}
-                          &groupCommunity=${(Number(urlParams.get("pageGroup")) * 3) + 1}`;
+            window.location.href = `/mypage?id=[[${session.userid}]]&pageGroup=${Number(urlParams.get("pageGroup")) + 1}&groupCommunity=${(Number(urlParams.get("pageGroup")) * 3) + 1}`;
+
+            mytest.style.display = "block";
+            mypage.style.display = "none";
+            mytime.style.display = "none";
         }
 
         function firstActive() {
             const urlParams = new URL(location.href).searchParams;
             window.location.href = `/mypage?id=[[${session.userid}]]&pageGroup=1&groupCommunity=1`;
+
+            mytest.style.display = "block";
+            mypage.style.display = "none";
+            mytime.style.display = "none";
         }
 
         function lastActive(threeList, twoList) {
@@ -528,6 +611,10 @@
             // console.log(threeList, twoList)
             const urlParams = new URL(location.href).searchParams;
             window.location.href = `/mypage?id=[[${session.userid}]]&pageGroup=${threeList}&groupCommunity=${twoList + ((threeList - 1) * 3)}`;
+
+            mytest.style.display = "block";
+            mypage.style.display = "none";
+            mytime.style.display = "none";
         }
     </script>
 
