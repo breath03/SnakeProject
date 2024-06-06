@@ -19,4 +19,13 @@ public class CommunityImpl implements Community {
     return mapper.ViewCommunity(categoryID);
   }
 
+  @Override
+  public List<CommunityVo> ViewContent(int postNum) {
+    return mapper.ViewContent(postNum);
+  }
+
+  @Override
+  public int insertTogether(int parameterPostNum, String sessionId) {
+    return mapper.insertTogether(parameterPostNum, sessionId);
+  }
 }

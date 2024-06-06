@@ -3,8 +3,9 @@ package com.project.SnakeProject.vo;
 public class CommunityVo {
   int ComIdx, ComCateIdx, MIdx, ComToCount, ComintoDate;
   String ComTitle, ComContent;
-  String ComRegDate, ComDelDate, ComUpDate, ComStartDate, ComEndDate;
+  String Complace, ComRegDate, ComDelDate, ComUpDate, ComStartDate, ComEndDate;
   int MemberCount;
+  String TogetherMemberName, TogetherMemberId;
 
   // 카테고리 정보 가져오는 vo
   private CommunityCategoryVo communityCategoryVo;
@@ -25,6 +26,28 @@ public class CommunityVo {
   }
 
   // 백지
+
+
+  public CommunityVo(int comIdx, int comCateIdx, int MIdx, int comToCount, int comintoDate, String comTitle, String comContent, String complace, String comRegDate, String comDelDate, String comUpDate, String comStartDate, String comEndDate, int memberCount, String togetherMemberName, String togetherMemberId, MemberVo memberVo) {
+    ComIdx = comIdx;
+    ComCateIdx = comCateIdx;
+    this.MIdx = MIdx;
+    ComToCount = comToCount;
+    ComintoDate = comintoDate;
+    ComTitle = comTitle;
+    ComContent = comContent;
+    Complace = complace;
+    ComRegDate = comRegDate;
+    ComDelDate = comDelDate;
+    ComUpDate = comUpDate;
+    ComStartDate = comStartDate;
+    ComEndDate = comEndDate;
+    MemberCount = memberCount;
+    TogetherMemberName = togetherMemberName;
+    TogetherMemberId = togetherMemberId;
+    this.memberVo = memberVo;
+  }
+
   public CommunityVo(int comIdx, int comCateIdx, int MIdx, int comToCount, int comintoDate, String comTitle, String comContent, String comRegDate, String comDelDate, String comUpDate, String comStartDate, String comEndDate) {
     ComIdx = comIdx;
     ComCateIdx = comCateIdx;
@@ -152,12 +175,36 @@ public class CommunityVo {
     ComEndDate = comEndDate;
   }
 
+  public String getComplace() {
+    return Complace;
+  }
+
+  public void setComplace(String complace) {
+    Complace = complace;
+  }
+
   public int getMemberCount() {
     return MemberCount;
   }
 
   public void setMemberCount(int memberCount) {
     MemberCount = memberCount;
+  }
+
+  public String getTogetherMemberName() {
+    return TogetherMemberName;
+  }
+
+  public void setTogetherMemberName(String togetherMemberName) {
+    TogetherMemberName = togetherMemberName;
+  }
+
+  public String getTogetherMemberId() {
+    return TogetherMemberId;
+  }
+
+  public void setTogetherMemberId(String togetherMemberId) {
+    TogetherMemberId = togetherMemberId;
   }
 
   public CommunityCategoryVo getCommunityCategoryVo() {

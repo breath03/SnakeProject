@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class StudyPareServiceImpl implements StudyPareService {
+
     @Autowired
     private StudyPareMapper mapper;
 

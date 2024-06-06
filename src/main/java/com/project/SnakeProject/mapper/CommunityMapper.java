@@ -10,8 +10,12 @@ import java.util.List;
 @Mapper
 public interface CommunityMapper {
   List<CommunityVo> ViewCommunity(int categoryID);
+  List<CommunityVo> ViewContent(int postNum);
+
+  public int insertTogether(int parameterPostNum, String sessionId);
 
   List<CommunityVo> ViewCommunity();
   List<CommunityCategoryVo> ViewCommunityCategory();
   List<TogetherStudyVo> ViewTogetherStudy();
+
 }

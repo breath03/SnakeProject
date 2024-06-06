@@ -18,6 +18,12 @@ public class MemberVo {
         MemberName = memberName;
     }
 
+    //내가만든 쿠키(지민)-> post.html에서 사용
+    public MemberVo(String memberId, String memberName) {
+        MemberId = memberId;
+        MemberName = memberName;
+    }
+
     public MemberVo(String memberPw, String memberName, String memberPhone) {
         MemberPw = memberPw;
         MemberName = memberName;
