@@ -76,7 +76,7 @@ public class PostController {
         model.addAttribute("parameterPostNum", parameterPostNum);
 
 
-        return "content/post";
+        return "content/post1";
     }
 
     @PostMapping("/insertTogether")

@@ -4,6 +4,7 @@ public class CommunityVo {
   int ComIdx, ComCateIdx, MIdx, ComToCount, ComintoDate;
   String ComTitle, ComContent;
   String Complace, ComRegDate, ComDelDate, ComUpDate, ComStartDate, ComEndDate;
+  String  ComZipcode, ComAddress;
   int MemberCount;
   String TogetherMemberName, TogetherMemberId;
 
@@ -24,6 +25,21 @@ public class CommunityVo {
     this.communityCategoryVo = communityCategoryVo;
     this.memberVo = memberVo;
   }
+
+  //테스트용(postUpdate에서 사용)
+
+  public CommunityVo(int comCateIdx, int comToCount, String comTitle, String comContent, String complace, String comStartDate, String comEndDate, String comZipcode, String comAddress) {
+    ComCateIdx = comCateIdx;
+    ComToCount = comToCount;
+    ComTitle = comTitle;
+    ComContent = comContent;
+    Complace = complace;
+    ComStartDate = comStartDate;
+    ComEndDate = comEndDate;
+    ComZipcode = comZipcode;
+    ComAddress = comAddress;
+  }
+
 
   // 백지
 
@@ -181,6 +197,22 @@ public class CommunityVo {
 
   public void setComplace(String complace) {
     Complace = complace;
+  }
+
+  public String getComZipcode() {
+    return ComZipcode;
+  }
+
+  public void setComZipcode(String comZipcode) {
+    ComZipcode = comZipcode;
+  }
+
+  public String getComAddress() {
+    return ComAddress;
+  }
+
+  public void setComAddress(String comAddress) {
+    ComAddress = comAddress;
   }
 
   public int getMemberCount() {

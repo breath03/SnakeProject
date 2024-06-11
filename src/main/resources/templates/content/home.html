@@ -152,7 +152,7 @@
                         <div class="row">
 
                             <div class="col-xl-3 d-flex align-items-stretch" th:each="StudyGInfo : ${ViewStudyGInfo}">
-                                <a href="/teamdetail">
+                                <a th:href = "@{/teamdetail(studyRoom=${StudyGInfo.SGINum})}">
                                     <div th:id="'roomPicture' + ${StudyGInfo.SGINum}" class="icon-box mt-4 mt-xl-0">
                                         <!--                      <i class="bx bx-receipt"></i>-->
                                         <th:block th:each="StudyGImg : ${ViewStudyGImg}">

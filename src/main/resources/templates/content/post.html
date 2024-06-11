@@ -16,15 +16,15 @@
                     <h4 class="page-subject">post페이지입니다.</h4>
 
 <!--                    <h4 class="post-title">제목입니다.</h4>-->
-                    <h4 class="post-title" th:text="${content.comTitle}"></h4>
+                    <h4 class="post-title" th:text="'📢' + ${content.comTitle}"></h4>
 
 <!--                    <h5 class="post-author">작성자</h5>-->
                     <h5 class="post-author" th:text="${content.memberVo.memberName}"></h5>
 <!--                    <p class="post-createDate">게시글 작성날짜: 1111-11-11</p>-->
-                    <p class="post-createDate" th:text="'게시글 작성날짜: ' + ${content.comRegDate}"></p>
+                    <p class="post-createDate" th:text="'🗓️ 게시글 작성날짜: ' + ${content.comRegDate}"></p>
 
 <!--                    <div class="post-peopleNumber">1 / 5</div>-->
-                    <div class="post-peopleNumber" th:text="${content.memberCount + 1} + ' / ' + ${content.comToCount}"></div>
+                    <div class="post-peopleNumber" th:text="'👥' + ${content.memberCount + 1} + ' / ' + ${content.comToCount}"></div>
 
 <!--                    자바스크립트로 넘길 데이터값 명시해놓은 것-->
 <!--                    <div id="data-container1" th:data-name="${content.togetherMemberName}"></div>-->
@@ -51,11 +51,11 @@
                     </div>
 
                     <div class="btn-group">
-                        <button class="previousButton btn btn-light" onclick="goback()">이전</button>
-                        <button th:if="${(content.memberCount + 1) != (content.comToCount)}" class="participateButton btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">참여하기</button>
+                        <button class="previousButton btn btn-light" onclick="goback()">⬅️ 이전</button>
+                        <button th:if="${(content.memberCount + 1) != (content.comToCount)}" class="participateButton btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">✔️ 참여하기</button>
                         <th:block th:if="${session.userid} == ${content.memberVo.memberId}">
-                            <a th:href="@{/postUpdate(postNum=${parameterPostNum})}" type="button" class="participateButton btn btn-light">수정</a>
-                            <button class="participateButton btn btn-light">삭제</button>
+                            <a th:href="@{/postUpdate(postNum=${parameterPostNum})}" type="button" class="participateButton btn btn-light">✏️ 수정</a>
+                            <button class="participateButton btn btn-light">❌ 삭제</button>
                         </th:block>
                     </div>
 

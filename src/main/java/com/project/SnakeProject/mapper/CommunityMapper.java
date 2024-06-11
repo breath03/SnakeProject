@@ -14,6 +14,8 @@ public interface CommunityMapper {
 
   public int insertTogether(int parameterPostNum, String sessionId);
 
+  public int updatePost(int parameterPostNum ,CommunityVo communityVo);
+
   List<CommunityVo> ViewCommunity();
   List<CommunityCategoryVo> ViewCommunityCategory();
   List<TogetherStudyVo> ViewTogetherStudy();

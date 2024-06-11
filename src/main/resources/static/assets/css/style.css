@@ -687,9 +687,9 @@ section.post main .container p.post-createDate {
 section.post main .container .post-peopleGroup {
   display: flex;
 }
-section.post main .container .post-peopleGroup .people {
-  margin-right: 15px;
-}
+/*section.post main .container .post-peopleGroup .people {*/
+/*  margin-right: 15px;*/
+/*}*/
 section.post main .container .information {
   margin-top: 30px;
   margin-bottom: 30px;

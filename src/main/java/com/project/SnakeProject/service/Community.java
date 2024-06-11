@@ -10,4 +10,6 @@ public interface Community {
   public List<CommunityVo> ViewContent(int postNum);
 
   public int insertTogether(int parameterPostNum, String sessionId);
+
+  public int updatePost(int parameterPostNum ,CommunityVo communityVo);
 }

@@ -28,4 +28,9 @@ public class CommunityImpl implements Community {
   public int insertTogether(int parameterPostNum, String sessionId) {
     return mapper.insertTogether(parameterPostNum, sessionId);
   }
+
+  @Override
+  public int updatePost(int parameterPostNum ,CommunityVo communityVo) {
+    return mapper.updatePost(parameterPostNum ,communityVo);
+  }
 }
